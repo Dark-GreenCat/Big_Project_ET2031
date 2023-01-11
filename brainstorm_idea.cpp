@@ -14,6 +14,7 @@ class DonVanChuyen {
 		string quan;
 		string tinh;
 	};
+
 	int ID;
 	int thoi_diem_gui; //yyyymmdd
 	int thoi_diem_toi; //yyyymmdd
