@@ -23,8 +23,7 @@ struct Price {
 class ShippingForm {
 	private:
 		int ID;
-	
-	public:
+		
 		std::string sender_name;
 		std::string receiver_name;
 
@@ -40,8 +39,10 @@ class ShippingForm {
 
 		bool isSucceeded;
 
+	public:
+		ShippingForm();	
 		ShippingForm(std::string receiver_name, std::string to_address, double distance, double weight); //weight = 0 => DOC
 
-		double getDocumentPrice();
-		double getPackagePrice();
+		double getDocumentPrice(); //Kien
+		double getPackagePrice(); //Kien
 };
