@@ -1,12 +1,5 @@
 #include <iostream>
 #include <string>
-// class Address {
-// 	private:
-		
-
-// 	public:
-// 		void enterAddress()
-// };
 
 enum ShippingType {
 	DOCUMENT = 1, 
