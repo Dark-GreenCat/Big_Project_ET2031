@@ -7,3 +7,4 @@ double ShippingForm::getPackagePrice() {
 double ShippingForm::getDocumentPrice() {
 
 }
+return 0;
