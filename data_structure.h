@@ -33,9 +33,7 @@ class ShippingForm {
 		bool isSucceeded;
 
 	public:
-		ShippingForm() {
-			ID = 0;
-		}	
+		ShippingForm(); 
 		ShippingForm(std::string receiver_name, std::string to_address, double distance, double weight); //weight = 0 => DOC
 
 		double getDocumentPrice(); //Kien
