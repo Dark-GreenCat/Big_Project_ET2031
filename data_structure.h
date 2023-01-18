@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "variable.h"
 
 enum ShippingType {
 	DOCUMENT = 1, 
@@ -13,29 +14,40 @@ struct Price {
 	double PAC_distance = 2000;
 };
 
+
 class ShippingForm {
 	private:
 		int ID;
-		
+
 		std::string sender_name;
 		std::string receiver_name;
 
 		std::string from_address;
 		std::string to_address;
-		
+
 		int sent_date;
 		int received_date;
-
-		double distance;
-		double weight;
-		ShippingType shipping_type;
 
 		bool isSucceeded;
 
 	public:
 		ShippingForm(){ID=0;}; 
-		ShippingForm(std::string receiver_name, std::string to_address, double distance, double weight); //weight = 0 => DOC
+		ShippingForm(std::string receiver_name, std::string to_address); 
+};
 
-		double getDocumentPrice(double distance,double DOC_distance, double DOC_service, Price money); //Kien
-		double getPackagePrice(double distance, double PAC_distance, double weight, double PAC_weight, Price money); //Kien
+class DocumentShippingForm : public ShippingForm {
+	private:
+		double distance;
+
+	public:
+		double getDocumentPrice(Price money = default_price); //Kien
+};
+
+class PackageShippingForm : public ShippingForm {
+	private:
+		double distance;
+		double weight;
+
+	public:
+		double getPackagePrice(Price money = default_price); //Kien
 };
