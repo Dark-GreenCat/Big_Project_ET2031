@@ -1,3 +1,3 @@
-#include "data_structure.h"
+//#include "data_structure.h"
 
-Price default_price;
+//Price default_price;
