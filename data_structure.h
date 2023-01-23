@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-//#include "variable.h"
 
 enum ShippingType {
 	DOCUMENT = 1, 
