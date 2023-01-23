@@ -1,5 +1,12 @@
+#ifndef DATA_STRUCTURE_H
+#define DATA_STRUCTURE_H
+
 #include <iostream>
 #include <string>
+
+#define DEFAULT_ID 0
+#define BLANK_TEXT ""
+#define NULL_DATE 0
 
 enum ShippingType {
 	DOCUMENT = 1, 
@@ -11,16 +18,16 @@ struct Price {
 	double DOC_distance = 2000;
 	double PAC_weight = 10000;
 	double PAC_distance = 2000;
-}default_price;
+} default_price;
 
 
 class ShippingForm {
-	private:
+	public:
 		int ID;
 
 		std::string sender_name;
 		std::string receiver_name;
-	public:
+
 		std::string from_address;
 		std::string to_address;
 
@@ -29,9 +36,9 @@ class ShippingForm {
 
 		bool isSucceeded;
 
-	public:
-		ShippingForm(){ID=0;}; 
-		ShippingForm(std::string receiver_name, std::string to_address); 
+		ShippingForm();
+		void inputInfo();
+		void outputInfo();
 };
 
 class DocumentShippingForm : public ShippingForm {
@@ -50,3 +57,5 @@ class PackageShippingForm : public ShippingForm {
 	public:
 		double getPackagePrice(Price money = default_price); //Kien
 };
+
+#endif
