@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include "variable.h"
 
 enum ShippingType {
 	DOCUMENT = 1, 
@@ -12,7 +11,7 @@ struct Price {
 	double DOC_distance = 2000;
 	double PAC_weight = 10000;
 	double PAC_distance = 2000;
-};
+}default_price;
 
 
 class ShippingForm {
@@ -21,7 +20,7 @@ class ShippingForm {
 
 		std::string sender_name;
 		std::string receiver_name;
-
+	public:
 		std::string from_address;
 		std::string to_address;
 
