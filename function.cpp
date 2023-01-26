@@ -1,12 +1,18 @@
 #include "function.h"
 
-std::string convertDate(int date){
-	std::string save = "";
-	save += std::to_string(date % 100) + "/" +
-			std::to_string((date / 100) % 100) + "/" +
-			std::to_string((date / 10000));
+std::string convertDate(int date)
+{
+	std::ostringstream str;
+	str.fill('0');
+	str.width(2);
+	str << date % 100 << '/';
 
-	return save;
+	str.width(2);
+	str << (date / 100) % 100 << '/';
+
+	str << date / 10000;
+
+	return str.str();
 }
 
 // Price updatePrice(double DOC_service, double DOC_distance, double PAC_weight, double PAC_distance){

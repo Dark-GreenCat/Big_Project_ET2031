@@ -14,15 +14,17 @@ ShippingForm::ShippingForm() {
 }
 
 void ShippingForm::inputGeneralInfo() {
+	std::cin.ignore();
 	std::cout << "Sender's name: ";
-	getline(std::cin, sender_name);
+	getline(std::cin, sender_name); 
 	std::cout << "From address: ";
-	getline(std::cin, from_address);
+	getline(std::cin, from_address); //std::cin.ignore(MAX_STREAMSIZE, '\n');
 	std::cout << "Sent date (yyyymmdd): ";
 	std::cin >> sent_date;
 
 	std::cout << std::endl;
 
+	std::cin.ignore();
 	std::cout << "Receiver's name: ";
 	getline(std::cin, receiver_name);
 	std::cout << "To address: ";
@@ -83,19 +85,18 @@ void ShippingFormList::inputList() {
 
 	for(int i = 0; i < number_of_form; i++) {
 		ShippingForm* Form;
-		Form->inputGeneralInfo();
 
 		int type;
 		std::cout << "Enter type of parcel: " << std::endl;
 		std::cout << "1. Document\t2.Package\n";
 		std::cout << "Type: ";
 		std::cin >> type;
-
 		if(type == DOCUMENT) 
 			Form = new DocumentShippingForm;
 		else if(type == PACKAGE)
 			Form = new PackageShippingForm;
 		
+		Form->inputGeneralInfo();
 		Form->inputInfo();
 		this->FormList.push_back(Form);
 	}
@@ -104,7 +105,7 @@ void ShippingFormList::inputList() {
 void ShippingFormList::outputList() {
 	std::cout << "Number of form: " << FormList.size();
 	for(int i = 0; i < FormList.size(); i++) {
-		std::cout << "Form #" << (i + 1) << std::endl;
+		std::cout << "\nForm #" << (i + 1) << std::endl;
 		outputAllFormInfo(*FormList.at(i));
 		std::cout << std::endl;
 	}

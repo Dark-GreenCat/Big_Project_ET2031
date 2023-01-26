@@ -5,10 +5,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <limits>
 
 #define DEFAULT_ID 0
 #define BLANK_TEXT ""
 #define NULL_DATE 0
+
+const int MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
 
 enum ParcelType {
 	DOCUMENT = 1, 
