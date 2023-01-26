@@ -1,4 +1,5 @@
 #include "data_structure.h"
+Price default_money;
 
 ShippingForm::ShippingForm() {
 	this->ID = DEFAULT_ID;
@@ -12,22 +13,106 @@ ShippingForm::ShippingForm() {
 	this->isSucceeded = false;
 }
 
-void ShippingForm::inputInfo() {
-	std::cout << "Enter sender's name: ";
-	std::cin.ignore();
-	std::cin >> this->sender_name;
+void ShippingForm::inputGeneralInfo() {
+	std::cout << "Sender's name: ";
+	getline(std::cin, sender_name);
+	std::cout << "From address: ";
+	getline(std::cin, from_address);
+	std::cout << "Sent date (yyyymmdd): ";
+	std::cin >> sent_date;
+
+	std::cout << std::endl;
+
+	std::cout << "Receiver's name: ";
+	getline(std::cin, receiver_name);
+	std::cout << "To address: ";
+	getline(std::cin, to_address);
+	std::cout << "Received date (yyyymmdd): ";
+	std::cin >> received_date;
 }
 
-void ShippingForm::outputInfo() {
-	std::cout << "Sender's name: " << this->sender_name;
+void ShippingForm::outputGeneralInfo() {
+	std::cout << "Sender's name: " << sender_name;
+	std::cout << "\nFrom address: " << from_address;
+	std::cout << "\nSent date: " << convertDate(sent_date);
+
+	std::cout << std::endl;
+
+	std::cout << "Receiver's name: " << receiver_name;
+	std::cout << "\nTo address: " << to_address;
+	std::cout << "\nReceived date: " << convertDate(received_date);
 }
 
-double DocumentShippingForm::getDocumentPrice(Price custom_price) {
+/////////////////////////////////////
+double DocumentShippingForm::getShippingPrice(Price custom_price) {
 	return (distance * custom_price.DOC_distance + custom_price.DOC_service);
 }
 
-double PackageShippingForm::getPackagePrice(Price custom_price){
+void DocumentShippingForm::inputInfo() {
+	std::cout << "Enter distance (km): ";
+	std::cin >> distance;
+}
+
+void DocumentShippingForm::outputInfo() {
+	std::cout << "Distance (km): " << distance;
+}
+
+/////////////////////////////////////
+double PackageShippingForm::getShippingPrice(Price custom_price){
 	return (distance * custom_price.PAC_distance + weight * custom_price.PAC_weight);
 }
 
+void PackageShippingForm::inputInfo() {
+	std::cout << "Enter distance (km): ";
+	std::cin >> distance;
 
+	std::cout << "Enter weight (kg): ";
+	std::cin >> weight;
+}
+
+void PackageShippingForm::outputInfo() {
+	std::cout << "Distance (km): " << distance << std::endl;
+	std::cout << "Weight (kg): " << weight;
+}
+
+///////////////////////////////////
+void ShippingFormList::inputList() {
+	int number_of_form = 0;
+	std::cout << "Enter the number of shipping forms: ";
+	std::cin >> number_of_form;
+
+	for(int i = 0; i < number_of_form; i++) {
+		ShippingForm* Form;
+		Form->inputGeneralInfo();
+
+		int type;
+		std::cout << "Enter type of parcel: " << std::endl;
+		std::cout << "1. Document\t2.Package\n";
+		std::cout << "Type: ";
+		std::cin >> type;
+
+		if(type == DOCUMENT) 
+			Form = new DocumentShippingForm;
+		else if(type == PACKAGE)
+			Form = new PackageShippingForm;
+		
+		Form->inputInfo();
+		this->FormList.push_back(Form);
+	}
+}
+
+void ShippingFormList::outputList() {
+	std::cout << "Number of form: " << FormList.size();
+	for(int i = 0; i < FormList.size(); i++) {
+		std::cout << "Form #" << (i + 1) << std::endl;
+		outputAllFormInfo(*FormList.at(i));
+		std::cout << std::endl;
+	}
+}
+
+////////////////////////////
+void outputAllFormInfo(ShippingForm& Form) {
+	Form.outputGeneralInfo();
+	std::cout << std::endl;
+	Form.outputInfo();
+}
