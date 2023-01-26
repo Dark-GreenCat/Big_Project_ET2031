@@ -78,11 +78,13 @@ class ShippingFormList {
 	public:
 		std::vector<ShippingForm *> FormList;
 
+		void addForm(ShippingForm* &Form);
 		void inputList();
 		void outputList();
 };
 
 
+void inputForm(ShippingForm* &Form);
 void outputAllFormInfo(ShippingForm& Form);
 
 #endif

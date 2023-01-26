@@ -78,32 +78,31 @@ void PackageShippingForm::outputInfo() {
 }
 
 ///////////////////////////////////
+void ShippingFormList::addForm(ShippingForm* &Form) {
+	this->FormList.push_back(Form);
+}
+
 void ShippingFormList::inputList() {
-	int number_of_form = 0;
-	std::cout << "Enter the number of shipping forms: ";
-	std::cin >> number_of_form;
+	char choice = 'N';
+	std::cout << "The current database has " << FormList.size() << " forms\n";
+	std::cout << "Do you want to add more forms? (Y/N) :";
+	std::cin >> choice;
+	
+	if (choice == 'Y' || choice == 'y')
+		do {
+			ShippingForm *Form;
+			inputForm(Form);
 
-	for(int i = 0; i < number_of_form; i++) {
-		ShippingForm* Form;
+			this->FormList.push_back(Form);
 
-		int type;
-		std::cout << "Enter type of parcel: " << std::endl;
-		std::cout << "1. Document\t2.Package\n";
-		std::cout << "Type: ";
-		std::cin >> type;
-		if(type == DOCUMENT) 
-			Form = new DocumentShippingForm;
-		else if(type == PACKAGE)
-			Form = new PackageShippingForm;
-		
-		Form->inputGeneralInfo();
-		Form->inputInfo();
-		this->FormList.push_back(Form);
-	}
+			std::cout << "\nThe current database has " << FormList.size() << " forms\n";
+			std::cout << "Do you want to add more forms? (Y/N) :";
+			std::cin >> choice;
+		} while (choice == 'Y' || choice == 'y');
 }
 
 void ShippingFormList::outputList() {
-	std::cout << "Number of form: " << FormList.size();
+	std::cout << "\nNumber of form: " << FormList.size() << std::endl;
 	for(int i = 0; i < FormList.size(); i++) {
 		std::cout << "\nForm #" << (i + 1) << std::endl;
 		outputAllFormInfo(*FormList.at(i));
@@ -112,6 +111,21 @@ void ShippingFormList::outputList() {
 }
 
 ////////////////////////////
+void inputForm(ShippingForm* &Form) {
+	int type;
+	std::cout << "Enter type of parcel: " << std::endl;
+	std::cout << "1. Document\t2.Package\n";
+	std::cout << "Type: ";
+	std::cin >> type;
+	if (type == DOCUMENT)
+		Form = new DocumentShippingForm;
+	else if (type == PACKAGE)
+		Form = new PackageShippingForm;
+
+	Form->inputGeneralInfo();
+	Form->inputInfo();
+}
+
 void outputAllFormInfo(ShippingForm& Form) {
 	Form.outputGeneralInfo();
 	std::cout << std::endl;
