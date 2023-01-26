@@ -25,5 +25,4 @@ int main() {
     ShippingFormList pLIST;
     pLIST.inputList();
     pLIST.outputList();
-    
 }
