@@ -24,5 +24,6 @@ int main() {
 
     ShippingFormList pLIST;
     pLIST.inputList();
+    pLIST.removeForm(0);
     pLIST.outputList();
 }

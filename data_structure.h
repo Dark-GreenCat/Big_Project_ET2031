@@ -79,6 +79,7 @@ class ShippingFormList {
 		std::vector<ShippingForm *> FormList;
 
 		void addForm(ShippingForm* &Form);
+		void removeForm(int index);
 		void inputList();
 		void outputList();
 };

@@ -82,6 +82,10 @@ void ShippingFormList::addForm(ShippingForm* &Form) {
 	this->FormList.push_back(Form);
 }
 
+void ShippingFormList::removeForm(int index) {
+	this->FormList.erase(FormList.begin() + index);
+}
+
 void ShippingFormList::inputList() {
 	char choice = 'N';
 	std::cout << "The current database has " << FormList.size() << " forms\n";
