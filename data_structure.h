@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <limits>
+#include<fstream>
 
 #define DEFAULT_ID 0
 #define BLANK_TEXT ""
@@ -60,7 +61,7 @@ class DocumentShippingForm : public ShippingForm {
 		virtual void inputInfo();
 		virtual void outputInfo();
 };
-
+ 
 class PackageShippingForm : public ShippingForm {
 	private:
 		double distance;
@@ -81,6 +82,8 @@ class ShippingFormList {
 		void addForm(ShippingForm* &Form);
 		void inputList();
 		void outputList();
+		void inputList(ifstream &filein);
+		void outputList(ifstream &filein);
 };
 
 
