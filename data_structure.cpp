@@ -13,10 +13,10 @@ ShippingForm::ShippingForm() {
 	this->isSucceeded = false;
 }
 
-void ShippingForm::inputGeneralInfo(std::ifstream filein) {
-	//std::cin.ignore();
+void ShippingForm::inputGeneralInfo(std::ifstream &filein) {
+	filein.ignore();
 	std::cout << "Sender's name: ";
-	getline(filein, sender_name); 
+	getline(filein, sender_name, '-'); 
 	std::cout << "From address: ";
 	getline(filein, from_address); //std::cin.ignore(MAX_STREAMSIZE, '\n');
 	std::cout << "Sent date (yyyymmdd): ";
@@ -24,7 +24,7 @@ void ShippingForm::inputGeneralInfo(std::ifstream filein) {
 
 	std::cout << std::endl;
 
-	//std::cin.ignore();
+	filein.ignore();
 	std::cout << "Receiver's name: ";
 	getline(filein, receiver_name);
 	std::cout << "To address: ";
@@ -100,7 +100,7 @@ void ShippingFormList::inputList(std::ifstream &filein) {
 			std::cout << "\nThe current database has " << FormList.size() << " forms\n";
 			std::cout << "Do you want to add more forms? (Y/N) :";
 			//filein>>choice;
-			std::cin >> choice;
+			filein >> choice;
 		} while (choice == 'Y' || choice == 'y');
 }
 void ShippingFormList::outputList() {
@@ -124,7 +124,7 @@ void inputForm(ShippingForm* &Form, std::ifstream &filein) {
 	else if (type == PACKAGE)
 		Form = new PackageShippingForm;
 
-	//Form->inputGeneralInfo();
+	Form->inputGeneralInfo(filein);
 	Form->inputInfo(filein);
 }
 

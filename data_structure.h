@@ -44,7 +44,7 @@ class ShippingForm {
 		bool isSucceeded;
 
 		ShippingForm();
-		void inputGeneralInfo(std::ifstream filein);
+		void inputGeneralInfo(std::ifstream &filein);
 		void outputGeneralInfo();
 		virtual void inputInfo(std::ifstream &filein) = 0;
 		virtual void outputInfo() = 0;
@@ -79,8 +79,6 @@ class ShippingFormList {
 	public:
 		std::vector<ShippingForm *> FormList;
 		void addForm(ShippingForm* &Form);
-		//void inputList();
-		//void outputList();
 		void inputList(std::ifstream &filein);
 		void outputList();
 };
