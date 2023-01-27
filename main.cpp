@@ -70,6 +70,16 @@ void test(vector<sinhvien> ds){
         }
     }
 }*/
+/*void doc_file(ifstream &filein, int a[], int& n){
+    for(int i=0;i<n;i++){
+        filein>>a[i];
+    }
+}
+void xuat_mang(int a[], int n){
+    for(int i=0;i<n;i++){
+        cout<< a[i]<< " ";
+    }
+}*/
 int main() { 
     //vector<ShippingForm *> pList; 
     // Price price;
@@ -89,10 +99,20 @@ int main() {
     pLIST.outputList();*/
     
     /*ifstream filein;
-    filein.open("test.txt",ios_base::in);//mở file test.txt ra doc
-    vector<sinhvien>d_s_sv;//khai bao ds sinh vien
-    doc_file(filein,d_s_sv);//đọc tất cả dữ liệu từ file test.txt
-    test(d_s_sv);
+    filein.open("input.txt",ios_base::in);//mở file test.txt ra doc
+    int a[100];
+    int n=0;
+    filein>>n;// doc gia tri dong dau tien tu file
+    doc_file(filein, a,n);
+    cout<<"\nDAY SO DO LA: \n";
+    xuat_mang(a,n);
     filein.close();*/
+    ifstream filein;
+    filein.open("infor.text", ios_base::in);
+    ShippingFormList pLIST;
+    pLIST.inputList(filein);
+    pLIST.outputList();
+    filein.close();
+    
     return 0;
 }

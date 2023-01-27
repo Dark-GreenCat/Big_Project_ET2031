@@ -13,7 +13,7 @@
 #define NULL_DATE 0
 
 const int MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
-
+//ifstream filein;
 enum ParcelType {
 	DOCUMENT = 1, 
 	PACKAGE = 2
@@ -44,9 +44,9 @@ class ShippingForm {
 		bool isSucceeded;
 
 		ShippingForm();
-		void inputGeneralInfo();
+		void inputGeneralInfo(std::ifstream filein);
 		void outputGeneralInfo();
-		virtual void inputInfo() = 0;
+		virtual void inputInfo(std::ifstream &filein) = 0;
 		virtual void outputInfo() = 0;
 
 		virtual double getShippingPrice(Price money = default_money) = 0;
@@ -58,7 +58,7 @@ class DocumentShippingForm : public ShippingForm {
 
 	public:
 		virtual double getShippingPrice(Price money = default_money);
-		virtual void inputInfo();
+		virtual void inputInfo(std::ifstream &filein);
 		virtual void outputInfo();
 };
  
@@ -69,7 +69,7 @@ class PackageShippingForm : public ShippingForm {
 
 	public:
 		virtual double getShippingPrice(Price money = default_money); 
-		virtual void inputInfo();
+		virtual void inputInfo(std::ifstream &filein);
 		virtual void outputInfo();
 };
 
@@ -78,16 +78,15 @@ class PackageShippingForm : public ShippingForm {
 class ShippingFormList {
 	public:
 		std::vector<ShippingForm *> FormList;
-
 		void addForm(ShippingForm* &Form);
-		void inputList();
+		//void inputList();
+		//void outputList();
+		void inputList(std::ifstream &filein);
 		void outputList();
-		void inputList(ifstream &filein);
-		void outputList(ifstream &filein);
 };
 
 
-void inputForm(ShippingForm* &Form);
+void inputForm(ShippingForm* &Form, std::ifstream &filein);
 void outputAllFormInfo(ShippingForm& Form);
 
 #endif
