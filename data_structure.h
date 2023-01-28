@@ -6,19 +6,21 @@
 #include <string>
 #include <vector>
 #include <limits>
+#include <fstream>
 
 #define DEFAULT_ID 0
 #define BLANK_TEXT ""
 #define NULL_DATE 0
 
 const int MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
-
-enum ParcelType {
-	DOCUMENT = 1, 
+enum ParcelType
+{
+	DOCUMENT = 1,
 	PACKAGE = 2
 };
 
-struct Price {
+struct Price
+{
 	double DOC_service = 12000;
 	double DOC_distance = 2000;
 	double PAC_weight = 10000;
@@ -27,64 +29,64 @@ struct Price {
 
 extern Price default_money;
 
-class ShippingForm {
-	public:
-		int ID;
+class ShippingForm
+{
+public:
+	int ID;
 
-		std::string sender_name;
-		std::string receiver_name;
+	std::string sender_name;
+	std::string receiver_name;
 
-		std::string from_address;
-		std::string to_address;
+	std::string from_address;
+	std::string to_address;
 
-		int sent_date;
-		int received_date;
+	int sent_date;
+	int received_date;
 
-		bool isSucceeded;
+	bool isSucceeded;
 
-		ShippingForm();
-		void inputGeneralInfo();
-		void outputGeneralInfo();
-		virtual void inputInfo() = 0;
-		virtual void outputInfo() = 0;
+	ShippingForm();
+	void inputGeneralInfo(std::ifstream &filein);
+	void outputGeneralInfo();
+	virtual void inputInfo(std::ifstream &filein) = 0;
+	virtual void outputInfo() = 0;
 
-		virtual double getShippingPrice(Price money = default_money) = 0;
+	virtual double getShippingPrice(Price money = default_money) = 0;
 };
 
-class DocumentShippingForm : public ShippingForm {
-	private:
-		double distance;
+class DocumentShippingForm : public ShippingForm
+{
+private:
+	double distance;
 
-	public:
-		virtual double getShippingPrice(Price money = default_money);
-		virtual void inputInfo();
-		virtual void outputInfo();
+public:
+	virtual double getShippingPrice(Price money = default_money);
+	virtual void inputInfo(std::ifstream &filein);
+	virtual void outputInfo();
 };
 
-class PackageShippingForm : public ShippingForm {
-	private:
-		double distance;
-		double weight;
+class PackageShippingForm : public ShippingForm
+{
+private:
+	double distance;
+	double weight;
 
-	public:
-		virtual double getShippingPrice(Price money = default_money); 
-		virtual void inputInfo();
-		virtual void outputInfo();
+public:
+	virtual double getShippingPrice(Price money = default_money);
+	virtual void inputInfo(std::ifstream &filein);
+	virtual void outputInfo();
 };
 
-
-
-class ShippingFormList {
-	public:
-		std::vector<ShippingForm *> FormList;
-
-		void addForm(ShippingForm* &Form);
-		void inputList();
-		void outputList();
+class ShippingFormList
+{
+public:
+	std::vector<ShippingForm*> FormList;
+	void addForm(ShippingForm* &Form);
+	void inputList(std::ifstream &filein);
+	void outputList();
 };
 
-
-void inputForm(ShippingForm* &Form);
-void outputAllFormInfo(ShippingForm& Form);
+void inputForm(ShippingForm* &Form, std::ifstream &filein);
+void outputAllFormInfo(ShippingForm &Form);
 
 #endif
