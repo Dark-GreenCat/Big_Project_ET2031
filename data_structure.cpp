@@ -86,33 +86,6 @@ void ShippingFormList::removeForm(int index) {
 	this->FormList.erase(FormList.begin() + index);
 }
 
-void ShippingFormList::inputList() {
-	char choice = 'N';
-	std::cout << "The current database has " << FormList.size() << " forms\n";
-	std::cout << "Do you want to add more forms? (Y/N) :";
-	std::cin >> choice;
-	
-	if (choice == 'Y' || choice == 'y')
-		do {
-			ShippingForm *Form;
-			inputForm(Form);
-
-			this->FormList.push_back(Form);
-
-			std::cout << "\nThe current database has " << FormList.size() << " forms\n";
-			std::cout << "Do you want to add more forms? (Y/N) :";
-			std::cin >> choice;
-		} while (choice == 'Y' || choice == 'y');
-}
-
-void ShippingFormList::outputList() {
-	std::cout << "\nNumber of form: " << FormList.size() << std::endl;
-	for(int i = 0; i < FormList.size(); i++) {
-		std::cout << "\nForm #" << (i + 1) << std::endl;
-		outputAllFormInfo(*FormList.at(i));
-		std::cout << std::endl;
-	}
-}
 
 ////////////////////////////
 void inputForm(ShippingForm* &Form) {
@@ -134,4 +107,32 @@ void outputAllFormInfo(ShippingForm& Form) {
 	Form.outputGeneralInfo();
 	std::cout << std::endl;
 	Form.outputInfo();
+}
+
+void inputFormList(ShippingFormList& List) {
+	char choice = 'N';
+	std::cout << "The current database has " << List.FormList.size() << " forms\n";
+	std::cout << "Do you want to add more forms? (Y/N) :";
+	std::cin >> choice;
+
+	if (choice == 'Y' || choice == 'y')
+		do {
+			ShippingForm *Form;
+			inputForm(Form);
+
+			List.FormList.push_back(Form);
+
+			std::cout << "\nThe current database has " << List.FormList.size() << " forms\n";
+			std::cout << "Do you want to add more forms? (Y/N) :";
+			std::cin >> choice;
+		} while (choice == 'Y' || choice == 'y');
+}
+
+void printFormList(ShippingFormList& List) {
+	std::cout << "\nNumber of form: " << List.FormList.size() << std::endl;
+	for(int i = 0; i < List.FormList.size(); i++) {
+		std::cout << "\nForm #" << (i + 1) << std::endl;
+		outputAllFormInfo(*List.FormList.at(i));
+		std::cout << std::endl;
+	}
 }

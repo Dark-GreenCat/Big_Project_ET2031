@@ -80,12 +80,12 @@ class ShippingFormList {
 
 		void addForm(ShippingForm* &Form);
 		void removeForm(int index);
-		void inputList();
-		void outputList();
 };
 
 
 void inputForm(ShippingForm* &Form);
 void outputAllFormInfo(ShippingForm& Form);
 
+void inputFormList(ShippingFormList& List);
+void printFormList(ShippingFormList& List);
 #endif
