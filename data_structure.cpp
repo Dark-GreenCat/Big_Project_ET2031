@@ -145,7 +145,3 @@ void outputAllFormInfo(ShippingForm &Form)
 	std::cout << std::endl;
 	Form.outputInfo();
 }
-
-/*void doc_thong_tin_don_hang(ifstream &filein, PackageShippingForm s1){
-
-};*/
