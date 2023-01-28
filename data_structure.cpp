@@ -87,7 +87,7 @@ void PackageShippingForm::outputInfo()
 }
 
 ///////////////////////////////////
-void ShippingFormList::addForm(ShippingForm *&Form)
+void ShippingFormList::addForm(ShippingForm* &Form)
 {
 	this->FormList.push_back(Form);
 }
@@ -102,7 +102,7 @@ void ShippingFormList::inputList(std::ifstream &filein)
 	if (choice == 'Y' || choice == 'y')
 		do
 		{
-			ShippingForm *Form;
+			ShippingForm* Form;
 			inputForm(Form, filein);
 
 			this->FormList.push_back(Form);
@@ -123,7 +123,7 @@ void ShippingFormList::outputList()
 	}
 }
 ////////////////////////////
-void inputForm(ShippingForm *&Form, std::ifstream &filein)
+void inputForm(ShippingForm* &Form, std::ifstream &filein)
 {
 	int type;
 	std::cout << "Enter type of parcel: " << std::endl;

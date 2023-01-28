@@ -80,13 +80,13 @@ public:
 class ShippingFormList
 {
 public:
-	std::vector<ShippingForm *> FormList;
-	void addForm(ShippingForm *&Form);
+	std::vector<ShippingForm*> FormList;
+	void addForm(ShippingForm* &Form);
 	void inputList(std::ifstream &filein);
 	void outputList();
 };
 
-void inputForm(ShippingForm *&Form, std::ifstream &filein);
+void inputForm(ShippingForm* &Form, std::ifstream &filein);
 void outputAllFormInfo(ShippingForm &Form);
 
 #endif
