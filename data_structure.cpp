@@ -80,7 +80,7 @@ void DocumentShippingForm::inputDetailInfo() {
 	std::cin >> distance;
 }
 
-void DocumentShippingForm::inputInfo(std::ifstream &filein)
+void DocumentShippingForm::inputDetailInfo(std::ifstream &filein)
 {
 	std::cout << "Enter distance (km): ";
 	filein >> distance;
@@ -103,7 +103,7 @@ void PackageShippingForm::inputDetailInfo() {
 	std::cin >> weight;
 }
 
-void PackageShippingForm::inputInfo(std::ifstream &filein)
+void PackageShippingForm::inputDetailInfo(std::ifstream &filein)
 {
 	std::cout << "Enter distance (km): ";
 	filein >> distance;
@@ -179,7 +179,7 @@ void inputForm(ShippingForm* &Form, std::ifstream &filein)
 		Form = new PackageShippingForm;
 
 	Form->inputGeneralInfo(filein);
-	Form->inputInfo(filein);
+	Form->inputDetailInfo(filein);
 }
 
 void outputAllFormInfo(ShippingForm &Form) {
@@ -188,7 +188,7 @@ void outputAllFormInfo(ShippingForm &Form) {
 	Form.outputDetailInfo();
 }
 
-void inputFormList(ShippingFormList &List) {
+void inputFormList(ShippingFormList& List) {
 	char choice = 'N';
 	std::cout << "The current database has " << List.FormList.size() << " forms\n";
 	std::cout << "Do you want to add more forms? (Y/N) :";
