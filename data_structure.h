@@ -43,10 +43,11 @@ class ShippingForm {
 		bool isSucceeded;
 
 		ShippingForm();
+		~ShippingForm();
 		void inputGeneralInfo();
 		void outputGeneralInfo();
-		virtual void inputInfo() = 0;
-		virtual void outputInfo() = 0;
+		virtual void inputDetailInfo() = 0;
+		virtual void outputDetailInfo() = 0;
 
 		virtual double getShippingPrice(Price money = default_money) = 0;
 };
@@ -57,8 +58,8 @@ class DocumentShippingForm : public ShippingForm {
 
 	public:
 		virtual double getShippingPrice(Price money = default_money);
-		virtual void inputInfo();
-		virtual void outputInfo();
+		virtual void inputDetailInfo();
+		virtual void outputDetailInfo();
 };
 
 class PackageShippingForm : public ShippingForm {
@@ -68,8 +69,8 @@ class PackageShippingForm : public ShippingForm {
 
 	public:
 		virtual double getShippingPrice(Price money = default_money); 
-		virtual void inputInfo();
-		virtual void outputInfo();
+		virtual void inputDetailInfo();
+		virtual void outputDetailInfo();
 };
 
 
@@ -80,12 +81,16 @@ class ShippingFormList {
 
 		void addForm(ShippingForm* &Form);
 		void removeForm(int index);
+		void replaceForm(ShippingForm* &NewForm, int index);
 };
 
 
 void inputForm(ShippingForm* &Form);
-void outputAllFormInfo(ShippingForm& Form);
+void outputAllFormInfo(ShippingForm &Form);
 
-void inputFormList(ShippingFormList& List);
-void printFormList(ShippingFormList& List);
+void inputFormList(ShippingFormList &List);
+void printFormList(ShippingFormList &List);
+
+void removeFormList(ShippingFormList &List);
+void editFormList(ShippingFormList &List);
 #endif

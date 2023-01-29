@@ -15,14 +15,15 @@ int main() {
     int option;
     /* DELIVERY FORMS MANAGERMENT PROGRAM */
     while (true) {
+        cout << endl;
         printMenu();
         cin >> option;
 
         // User input wrong data
         if (!cin) {
             // user didn't input a number
-            cin.clear();                                                   // reset failbit
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // skip bad input
+            cin.clear();                      // reset failbit
+            cin.ignore(MAX_STREAMSIZE, '\n'); // skip bad input
         }
 
         switch (option) {
@@ -30,24 +31,25 @@ int main() {
                 inputFormList(List);
                 break;
 
-            case 2:
-                //input_customers_infor(&vList, numberOfCustomers);
+            case 2: // Edit a form
+                editFormList(List);
                 break;
 
-            case 3:
-                //sort_customer_list(&vList);
+            case 3: // Remove a form
+                removeFormList(List);
                 break;
 
-            case 4:
-                //(&vList);
+            case 8: // Print all forms
+                printFormList(List);
                 break;
 
-            case 8:
+            case 9:
                 List.FormList.clear();
                 exit(1);
                 break;
 
             default:
+                cout << "This feature is currently not available\n";   
                 break;
         }
     }

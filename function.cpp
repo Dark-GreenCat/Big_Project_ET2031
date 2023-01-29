@@ -25,7 +25,8 @@ void printMenu() {
 	std::cout << "\t5. List completed delivery by time\n";
 	std::cout << "\t6. Updata price\n";
 	std::cout << "\t7. Revenue\n";
-	std::cout << "\t8. Exit program\n";
+	std::cout << "\t8. Print all forms\n";
+	std::cout << "\t9. Exit program\n";
 	std::cout << "\n\t-> Your option: "; 
 }
 
