@@ -106,4 +106,6 @@ void editFormList(ShippingFormList &List);
 void searchFormList(ShippingFormList &List);
 
 void listCompletedFileByTime(ShippingFormList &List);
+
+void updatePrice();
 #endif

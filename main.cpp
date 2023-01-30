@@ -53,6 +53,10 @@ int main() {
                 listCompletedFileByTime(List);
                 break;
             
+            case 6: // Update price
+                updatePrice();
+                break;
+
             case 8: // Print specific form
                 printSpecificForm(List);
                 break;

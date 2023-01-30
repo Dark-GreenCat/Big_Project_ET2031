@@ -326,3 +326,25 @@ void listCompletedFileByTime(ShippingFormList &List) {
 			std::cout << "Form #" << i + 1 << std::endl;
 	}
 }
+
+void updatePrice() {
+	Price custom_price;
+	std::cout << "Enter new price:\n";
+
+	std::cout << "1. Document\n";
+	std::cout << "\tService's price: ";
+	std::cin >> custom_price.DOC_service;
+	std::cout << "\tDistance's price (per km): ";
+	std::cin >> custom_price.DOC_distance;
+
+	std::cout << "2. Package\n";
+	std::cout << "\tWeight's price (per kg): ";
+	std::cin >> custom_price.PAC_weight;
+	std::cout << "\tDistance's price (per km): ";
+	std::cin >> custom_price.PAC_distance;
+
+	default_money = custom_price;
+	std::cout << "New price:\n";
+	std::cout <<"1. Document:\nService: " << default_money.DOC_service << "\nDistance: " << default_money.DOC_distance << std::endl;
+	std::cout <<"2. Package:\nWeight: " << default_money.PAC_weight << "\nDistance: " << default_money.PAC_distance << std::endl;
+}
