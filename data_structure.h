@@ -12,6 +12,8 @@
 #define BLANK_TEXT ""
 #define NULL_DATE 0
 
+#define STRING_NOT_FOUND std::string::npos
+
 const int MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
 
 enum ParcelType {
@@ -100,4 +102,5 @@ void printFormList(ShippingFormList &List);
 
 void removeFormList(ShippingFormList &List);
 void editFormList(ShippingFormList &List);
+void searchFormList(ShippingFormList &List);
 #endif

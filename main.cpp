@@ -45,6 +45,10 @@ int main() {
                 removeFormList(List);
                 break;
 
+            case 4: // Search forms via address
+                searchFormList(List);
+                break;
+                
             case 9: // Print all forms
                 printFormList(List);
                 break;
