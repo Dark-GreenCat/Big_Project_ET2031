@@ -45,11 +45,11 @@ int main() {
                 removeFormList(List);
                 break;
 
-            case 8: // Print all forms
+            case 9: // Print all forms
                 printFormList(List);
                 break;
 
-            case 9:
+            case 10: // Exit program
                 List.FormList.clear();
                 exit(1);
                 break;
