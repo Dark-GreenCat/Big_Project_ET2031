@@ -216,6 +216,18 @@ void printFormList(ShippingFormList &List) {
 	}
 }
 
+void printSpecificForm(ShippingFormList &List) {
+	int index = 0;
+	std::cout << "\nThe current database has " << List.FormList.size() << " forms\n";
+	std::cout << "Choose a form to view its info [0 - " << List.FormList.size() - 1 << "]: ";
+	std::cin >> index;
+
+	std::cout << "\nForm index #" << index << std::endl;
+	outputAllFormInfo(*List.FormList.at(index));
+	std::cout << std::endl;
+}
+
+
 void removeFormList(ShippingFormList &List) {
 	char choice = 'N';
 	std::cout << "\nThe current database has " << List.FormList.size() << " forms\n";

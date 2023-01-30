@@ -49,6 +49,10 @@ int main() {
                 searchFormList(List);
                 break;
                 
+            case 8: // Print specific form
+                printSpecificForm(List);
+                break;
+
             case 9: // Print all forms
                 printFormList(List);
                 break;
