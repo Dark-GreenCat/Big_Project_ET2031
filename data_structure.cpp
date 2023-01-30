@@ -219,11 +219,11 @@ void printFormList(ShippingFormList &List) {
 void printSpecificForm(ShippingFormList &List) {
 	int index = 0;
 	std::cout << "\nThe current database has " << List.FormList.size() << " forms\n";
-	std::cout << "Choose a form to view its info [0 - " << List.FormList.size() - 1 << "]: ";
+	std::cout << "Choose a form to view its info [1 - " << List.FormList.size() << "]: ";
 	std::cin >> index;
 
-	std::cout << "\nForm index #" << index << std::endl;
-	outputAllFormInfo(*List.FormList.at(index));
+	std::cout << "\nForm #" << index << std::endl;
+	outputAllFormInfo(*List.FormList.at(index - 1));
 	std::cout << std::endl;
 }
 
@@ -307,5 +307,22 @@ void searchFormList(ShippingFormList &List) {
 	std::cout << "\nThere are " << index.size() << " results matched\n";
 	for(int i = 0; i < index.size(); i++) {
 		std::cout << "Form index: " << index.at(i) << std::endl;
+	}
+}
+
+
+void listCompletedFileByTime(ShippingFormList &List) {
+	int from_date = NULL_DATE,
+		to_date = NULL_DATE;
+
+	std::cout << "\nEnter the start time [yyyymmdd]: ";
+	std::cin >> from_date;
+	std::cout << "Enter the end time [yyyymmdd]: ";
+	std::cin >> to_date;
+
+	std::cout << "\nCompleted delivery:\n";
+	for(int i = 0; i < List.FormList.size(); i++) {
+		if(from_date <= List.FormList.at(i)->received_date && List.FormList.at(i)->received_date <= to_date)
+			std::cout << "Form #" << i + 1 << std::endl;
 	}
 }

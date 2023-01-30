@@ -49,6 +49,10 @@ int main() {
                 searchFormList(List);
                 break;
                 
+            case 5: // List completed delivery by time
+                listCompletedFileByTime(List);
+                break;
+            
             case 8: // Print specific form
                 printSpecificForm(List);
                 break;
