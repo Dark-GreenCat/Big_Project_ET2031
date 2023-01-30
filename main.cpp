@@ -57,6 +57,10 @@ int main() {
                 updatePrice();
                 break;
 
+            case 7:
+                printRevenue(List);
+                break;
+
             case 8: // Print specific form
                 printSpecificForm(List);
                 break;

@@ -108,4 +108,5 @@ void searchFormList(ShippingFormList &List);
 void listCompletedFileByTime(ShippingFormList &List);
 
 void updatePrice();
+void printRevenue(ShippingFormList &List);
 #endif

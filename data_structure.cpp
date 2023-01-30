@@ -348,3 +348,21 @@ void updatePrice() {
 	std::cout <<"1. Document:\nService: " << default_money.DOC_service << "\nDistance: " << default_money.DOC_distance << std::endl;
 	std::cout <<"2. Package:\nWeight: " << default_money.PAC_weight << "\nDistance: " << default_money.PAC_distance << std::endl;
 }
+
+void printRevenue(ShippingFormList &List) {
+	int from_date = NULL_DATE,
+		to_date = NULL_DATE;
+
+	std::cout << "\nEnter the start time [yyyymmdd]: ";
+	std::cin >> from_date;
+	std::cout << "Enter the end time [yyyymmdd]: ";
+	std::cin >> to_date;
+
+	unsigned long long int revenue = 0;
+	for(int i = 0; i < List.FormList.size(); i++) {
+		if(from_date <= List.FormList.at(i)->received_date && List.FormList.at(i)->received_date <= to_date)
+			revenue += List.FormList.at(i)->getShippingPrice();
+	}
+
+	std::cout << "\nRevenue from " << convertDate(from_date) << " to " << convertDate(to_date) << ": " << revenue << std::endl;
+}
