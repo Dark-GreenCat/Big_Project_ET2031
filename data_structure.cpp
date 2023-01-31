@@ -182,6 +182,10 @@ void inputForm(ShippingForm* &Form) {
 	std::cout << "1. Document\t2.Package\n";
 	std::cout << "Type: ";
 	std::cin >> type;
+	{std::ofstream fileout;
+    fileout.open("testFile.text", std::ios::app);
+    fileout<<type<<"\n";
+    fileout.close();}
 	if (type == DOCUMENT)
 		Form = new DocumentShippingForm;
 	else if (type == PACKAGE)
