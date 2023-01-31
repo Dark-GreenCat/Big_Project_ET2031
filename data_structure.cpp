@@ -1,6 +1,10 @@
 #include "data_structure.h"
 Price default_money;
 
+bool isEmpty(std::ifstream& pFile) {
+	return pFile.peek() == std::ifstream::traits_type::eof();
+}
+
 ShippingForm::ShippingForm() {
 	this->ID = DEFAULT_ID;
 	this->sender_name = BLANK_TEXT;
@@ -219,10 +223,12 @@ void inputFormList(ShippingFormList& List) {
 	if (choice == 'Y' || choice == 'y')
 		do {
 			ShippingForm *Form;
-			{std::ofstream fileout;
-			fileout.open("infor.text", std::ios::app);
-			fileout<<"\n";
-			fileout.close();}
+			if (List.FormList.size() > 0) {
+				std::ofstream fileout;
+				fileout.open("infor.text", std::ios::app);
+				fileout << "\n";
+				fileout.close();
+			}
 			inputForm(Form);
 
 			List.FormList.push_back(Form);
