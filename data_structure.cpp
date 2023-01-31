@@ -1,10 +1,6 @@
 #include "data_structure.h"
 Price default_money;
 
-bool isEmpty(std::ifstream& pFile) {
-	return pFile.peek() == std::ifstream::traits_type::eof();
-}
-
 ShippingForm::ShippingForm() {
 	this->ID = DEFAULT_ID;
 	this->sender_name = BLANK_TEXT;

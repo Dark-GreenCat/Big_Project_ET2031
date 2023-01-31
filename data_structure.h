@@ -16,8 +16,6 @@
 
 const int MAX_STREAMSIZE = std::numeric_limits<std::streamsize>::max();
 
-bool isEmpty(std::ifstream& pFile);
-
 enum ParcelType {
 	DOCUMENT = 1, 
 	PACKAGE = 2

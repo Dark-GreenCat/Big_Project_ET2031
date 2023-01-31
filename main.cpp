@@ -15,9 +15,6 @@ int main() {
     ifstream filein;
     filein.open("infor.text", ios_base::in);
     filein.peek();
-
-    // if(filein.eof()) cout << "EOF\n";
-    // else cout << "NOT EOF\n";
     List.inputList(filein);
     printFormList(List);
     filein.close();
