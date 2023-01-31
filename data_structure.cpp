@@ -22,21 +22,21 @@ void ShippingForm::inputGeneralInfo() {
 	std::cout << "Sender's name: ";
 	getline(std::cin, sender_name);
 	{std::ofstream fileout;
-    fileout.open("testFile.text", std::ios::app);
+    fileout.open("infor.text", std::ios::app);
     fileout<<sender_name<<"\n";
     fileout.close();}  
 
 	std::cout << "From address: ";
 	getline(std::cin, from_address); //std::cin.ignore(MAX_STREAMSIZE, '\n');
 	{std::ofstream fileout;
-    fileout.open("testFile.text", std::ios::app);
+    fileout.open("infor.text", std::ios::app);
     fileout<<from_address<<"\n";
     fileout.close();}
 
 	std::cout << "Sent date (yyyymmdd): ";
 	std::cin >> sent_date;
 	{std::ofstream fileout;
-    fileout.open("testFile.text", std::ios::app);
+    fileout.open("infor.text", std::ios::app);
     fileout<<sent_date<<"\n";
     fileout.close();}
 
@@ -46,21 +46,21 @@ void ShippingForm::inputGeneralInfo() {
 	std::cout << "Receiver's name: ";
 	getline(std::cin, receiver_name);
 	{std::ofstream fileout;
-    fileout.open("testFile.text", std::ios::app);
+    fileout.open("infor.text", std::ios::app);
     fileout<<receiver_name<<"\n";
     fileout.close();}
 
 	std::cout << "To address: ";
 	getline(std::cin, to_address);
 	{std::ofstream fileout;
-    fileout.open("testFile.text", std::ios::app);
+    fileout.open("infor.text", std::ios::app);
     fileout<<to_address<<"\n";
     fileout.close();}
 
 	std::cout << "Received date (yyyymmdd): ";
 	std::cin >> received_date;
 	{std::ofstream fileout;
-    fileout.open("testFile.text", std::ios::app);
+    fileout.open("infor.text", std::ios::app);
     fileout<<received_date<<"\n";
     fileout.close();}
 }
@@ -101,7 +101,7 @@ void DocumentShippingForm::inputDetailInfo() {
 	std::cout << "Enter distance (km): ";
 	std::cin >> distance;
 	{std::ofstream fileout;
-    fileout.open("testFile.text", std::ios::app);
+    fileout.open("infor.text", std::ios::app);
     fileout<<distance<<"\n";
     fileout.close();}
 }
@@ -125,14 +125,14 @@ void PackageShippingForm::inputDetailInfo() {
 	std::cout << "Enter distance (km): ";
 	std::cin >> distance;
 	{std::ofstream fileout;
-    fileout.open("testFile.text", std::ios::app);
+    fileout.open("infor.text", std::ios::app);
     fileout<<distance<<"\n";
     fileout.close();}
 
 	std::cout << "Enter weight (kg): ";
 	std::cin >> weight;
 	{std::ofstream fileout;
-    fileout.open("testFile.text", std::ios::app);
+    fileout.open("infor.text", std::ios::app);
     fileout<<weight<<"\n";
     fileout.close();}
 }
@@ -183,7 +183,7 @@ void inputForm(ShippingForm* &Form) {
 	std::cout << "Type: ";
 	std::cin >> type;
 	{std::ofstream fileout;
-    fileout.open("testFile.text", std::ios::app);
+    fileout.open("infor.text", std::ios::app);
     fileout<<type<<"\n";
     fileout.close();}
 	if (type == DOCUMENT)
@@ -220,7 +220,7 @@ void inputFormList(ShippingFormList& List) {
 	std::cout << "Do you want to add more forms? (Y/N) :";
 	std::cin >> choice;
 	{std::ofstream fileout;
-    fileout.open("testFile.text", std::ios::app);
+    fileout.open("infor.text", std::ios::app);
     fileout<<choice<<"\n";
     fileout.close();}
 
@@ -236,7 +236,7 @@ void inputFormList(ShippingFormList& List) {
 			std::cout << "Do you want to add more forms? (Y/N) :";
 			std::cin >> choice;
 			{std::ofstream fileout;
-    		fileout.open("testFile.text", std::ios::app);
+    		fileout.open("infor.text", std::ios::app);
     		fileout<<choice<<"\n";
     		fileout.close();}
 		} while (choice == 'Y' || choice == 'y');
