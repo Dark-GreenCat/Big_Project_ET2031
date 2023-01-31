@@ -14,6 +14,7 @@ int main() {
     
     ifstream filein;
     filein.open("infor.text", ios_base::in);
+    filein.peek();
     List.inputList(filein);
     printFormList(List);
     filein.close();

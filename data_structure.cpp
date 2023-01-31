@@ -20,41 +20,63 @@ ShippingForm::~ShippingForm() {
 void ShippingForm::inputGeneralInfo() {
 	std::cin.ignore();
 	std::cout << "Sender's name: ";
-	getline(std::cin, sender_name); 
+	getline(std::cin, sender_name);
+	{std::ofstream fileout;
+    fileout.open("infor.text", std::ios::app);
+    fileout<<sender_name<<"\n";
+    fileout.close();}  
+
 	std::cout << "From address: ";
 	getline(std::cin, from_address); //std::cin.ignore(MAX_STREAMSIZE, '\n');
+	{std::ofstream fileout;
+    fileout.open("infor.text", std::ios::app);
+    fileout<<from_address<<"\n";
+    fileout.close();}
+
 	std::cout << "Sent date (yyyymmdd): ";
 	std::cin >> sent_date;
+	{std::ofstream fileout;
+    fileout.open("infor.text", std::ios::app);
+    fileout<<sent_date<<"\n";
+    fileout.close();}
 
 	std::cout << std::endl;
 
 	std::cin.ignore();
 	std::cout << "Receiver's name: ";
 	getline(std::cin, receiver_name);
+	{std::ofstream fileout;
+    fileout.open("infor.text", std::ios::app);
+    fileout<<receiver_name<<"\n";
+    fileout.close();}
+
 	std::cout << "To address: ";
 	getline(std::cin, to_address);
+	{std::ofstream fileout;
+    fileout.open("infor.text", std::ios::app);
+    fileout<<to_address<<"\n";
+    fileout.close();}
+
 	std::cout << "Received date (yyyymmdd): ";
 	std::cin >> received_date;
+	{std::ofstream fileout;
+    fileout.open("infor.text", std::ios::app);
+    fileout<<received_date<<"\n";
+    fileout.close();}
 }
 
 void ShippingForm::inputGeneralInfo(std::ifstream &filein)
 {
 	filein.ignore();
-	std::cout << "Sender's name: ";
-	getline(filein, sender_name, '-');
-	std::cout << "From address: ";
+	getline(filein, sender_name);
 	getline(filein, from_address); // std::cin.ignore(MAX_STREAMSIZE, '\n');
-	std::cout << "Sent date (yyyymmdd): ";
 	filein >> sent_date;
 
 	std::cout << std::endl;
 
 	filein.ignore();
-	std::cout << "Receiver's name: ";
 	getline(filein, receiver_name);
-	std::cout << "To address: ";
 	getline(filein, to_address);
-	std::cout << "Received date (yyyymmdd): ";
 	filein >> received_date;
 }
 
@@ -78,6 +100,10 @@ double DocumentShippingForm::getShippingPrice(Price custom_price) {
 void DocumentShippingForm::inputDetailInfo() {
 	std::cout << "Enter distance (km): ";
 	std::cin >> distance;
+	{std::ofstream fileout;
+    fileout.open("infor.text", std::ios::app);
+    fileout<<distance;
+    fileout.close();}
 }
 
 void DocumentShippingForm::inputDetailInfo(std::ifstream &filein)
@@ -98,17 +124,22 @@ double PackageShippingForm::getShippingPrice(Price custom_price){
 void PackageShippingForm::inputDetailInfo() {
 	std::cout << "Enter distance (km): ";
 	std::cin >> distance;
+	{std::ofstream fileout;
+    fileout.open("infor.text", std::ios::app);
+    fileout<<distance<<"\n";
+    fileout.close();}
 
 	std::cout << "Enter weight (kg): ";
 	std::cin >> weight;
+	{std::ofstream fileout;
+    fileout.open("infor.text", std::ios::app);
+    fileout<<weight;
+    fileout.close();}
 }
 
 void PackageShippingForm::inputDetailInfo(std::ifstream &filein)
 {
-	std::cout << "Enter distance (km): ";
 	filein >> distance;
-
-	std::cout << "Enter weight (kg): ";
 	filein >> weight;
 }
 
@@ -132,22 +163,12 @@ void ShippingFormList::replaceForm(ShippingForm* &NewForm, int index) {
 }
 
 void ShippingFormList::inputList(std::ifstream &filein) {
-	char choice = 'N';
-	std::cout << "The current database has " << FormList.size() << " forms\n";
-	std::cout << "Do you want to add more forms? (Y/N) :";
-	filein >> choice;
+	ShippingForm* Form;
 
-	if (choice == 'Y' || choice == 'y')
-		do {
-			ShippingForm* Form;
-			inputForm(Form, filein);
-
-			this->FormList.push_back(Form);
-
-			std::cout << "\nThe current database has " << FormList.size() << " forms\n";
-			std::cout << "Do you want to add more forms? (Y/N) :";
-			filein >> choice;
-		} while (choice == 'Y' || choice == 'y');
+	while(!filein.eof()) {
+		inputForm(Form, filein);
+		this->FormList.push_back(Form);
+	}
 }
 
 ////////////////////////////
@@ -157,6 +178,10 @@ void inputForm(ShippingForm* &Form) {
 	std::cout << "1. Document\t2.Package\n";
 	std::cout << "Type: ";
 	std::cin >> type;
+	{std::ofstream fileout;
+    fileout.open("infor.text", std::ios::app);
+    fileout<<type<<"\n";
+    fileout.close();}
 	if (type == DOCUMENT)
 		Form = new DocumentShippingForm;
 	else if (type == PACKAGE)
@@ -169,9 +194,6 @@ void inputForm(ShippingForm* &Form) {
 void inputForm(ShippingForm* &Form, std::ifstream &filein)
 {
 	int type;
-	std::cout << "Enter type of parcel: " << std::endl;
-	std::cout << "1. Document\t2.Package\n";
-	std::cout << "Type: ";
 	filein >> type;
 	if (type == DOCUMENT)
 		Form = new DocumentShippingForm;
@@ -197,6 +219,12 @@ void inputFormList(ShippingFormList& List) {
 	if (choice == 'Y' || choice == 'y')
 		do {
 			ShippingForm *Form;
+			if (List.FormList.size() > 0) {
+				std::ofstream fileout;
+				fileout.open("infor.text", std::ios::app);
+				fileout << "\n";
+				fileout.close();
+			}
 			inputForm(Form);
 
 			List.FormList.push_back(Form);
