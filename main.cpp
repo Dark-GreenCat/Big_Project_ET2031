@@ -45,11 +45,31 @@ int main() {
                 removeFormList(List);
                 break;
 
-            case 8: // Print all forms
+            case 4: // Search forms via address
+                searchFormList(List);
+                break;
+                
+            case 5: // List completed delivery by time
+                listCompletedFileByTime(List);
+                break;
+            
+            case 6: // Update price
+                updatePrice();
+                break;
+
+            case 7:
+                printRevenue(List);
+                break;
+
+            case 8: // Print specific form
+                printSpecificForm(List);
+                break;
+
+            case 9: // Print all forms
                 printFormList(List);
                 break;
 
-            case 9:
+            case 10: // Exit program
                 List.FormList.clear();
                 exit(1);
                 break;

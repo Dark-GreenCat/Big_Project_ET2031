@@ -23,10 +23,11 @@ void printMenu() {
 	std::cout << "\t3. Remove a form\n";
 	std::cout << "\t4. Search forms via address\n";
 	std::cout << "\t5. List completed delivery by time\n";
-	std::cout << "\t6. Updata price\n";
+	std::cout << "\t6. Update price\n";
 	std::cout << "\t7. Revenue\n";
-	std::cout << "\t8. Print all forms\n";
-	std::cout << "\t9. Exit program\n";
+	std::cout << "\t8. Print specific form\n";
+	std::cout << "\t9. Print all forms\n";
+	std::cout << "\t10. Exit program\n";
 	std::cout << "\n\t-> Your option: "; 
 }
 
