@@ -21,48 +21,20 @@ void ShippingForm::inputGeneralInfo() {
 	std::cin.ignore();
 	std::cout << "Sender's name: ";
 	getline(std::cin, sender_name);
-	{std::ofstream fileout;
-    fileout.open("infor.text", std::ios::app);
-    fileout<<sender_name<<"\n";
-    fileout.close();}  
-
 	std::cout << "From address: ";
 	getline(std::cin, from_address); //std::cin.ignore(MAX_STREAMSIZE, '\n');
-	{std::ofstream fileout;
-    fileout.open("infor.text", std::ios::app);
-    fileout<<from_address<<"\n";
-    fileout.close();}
-
 	std::cout << "Sent date (yyyymmdd): ";
 	std::cin >> sent_date;
-	{std::ofstream fileout;
-    fileout.open("infor.text", std::ios::app);
-    fileout<<sent_date<<"\n";
-    fileout.close();}
 
 	std::cout << std::endl;
 
 	std::cin.ignore();
 	std::cout << "Receiver's name: ";
 	getline(std::cin, receiver_name);
-	{std::ofstream fileout;
-    fileout.open("infor.text", std::ios::app);
-    fileout<<receiver_name<<"\n";
-    fileout.close();}
-
 	std::cout << "To address: ";
 	getline(std::cin, to_address);
-	{std::ofstream fileout;
-    fileout.open("infor.text", std::ios::app);
-    fileout<<to_address<<"\n";
-    fileout.close();}
-
 	std::cout << "Received date (yyyymmdd): ";
 	std::cin >> received_date;
-	{std::ofstream fileout;
-    fileout.open("infor.text", std::ios::app);
-    fileout<<received_date<<"\n";
-    fileout.close();}
 }
 
 void ShippingForm::inputGeneralInfo(std::ifstream &filein)
@@ -93,6 +65,9 @@ void ShippingForm::outputGeneralInfo() {
 }
 
 /////////////////////////////////////
+int DocumentShippingForm::getType(){
+	return DOCUMENT;
+}
 double DocumentShippingForm::getShippingPrice(Price custom_price) {
 	return (distance * custom_price.DOC_distance + custom_price.DOC_service);
 }
@@ -100,10 +75,6 @@ double DocumentShippingForm::getShippingPrice(Price custom_price) {
 void DocumentShippingForm::inputDetailInfo() {
 	std::cout << "Enter distance (km): ";
 	std::cin >> distance;
-	{std::ofstream fileout;
-    fileout.open("infor.text", std::ios::app);
-    fileout<<distance;
-    fileout.close();}
 }
 
 void DocumentShippingForm::inputDetailInfo(std::ifstream &filein)
@@ -117,6 +88,9 @@ void DocumentShippingForm::outputDetailInfo() {
 }
 
 /////////////////////////////////////
+int PackageShippingForm::getType(){
+	return PACKAGE;
+}
 double PackageShippingForm::getShippingPrice(Price custom_price){
 	return (distance * custom_price.PAC_distance + weight * custom_price.PAC_weight);
 }
@@ -124,17 +98,8 @@ double PackageShippingForm::getShippingPrice(Price custom_price){
 void PackageShippingForm::inputDetailInfo() {
 	std::cout << "Enter distance (km): ";
 	std::cin >> distance;
-	{std::ofstream fileout;
-    fileout.open("infor.text", std::ios::app);
-    fileout<<distance<<"\n";
-    fileout.close();}
-
 	std::cout << "Enter weight (kg): ";
 	std::cin >> weight;
-	{std::ofstream fileout;
-    fileout.open("infor.text", std::ios::app);
-    fileout<<weight;
-    fileout.close();}
 }
 
 void PackageShippingForm::inputDetailInfo(std::ifstream &filein)
@@ -178,10 +143,6 @@ void inputForm(ShippingForm* &Form) {
 	std::cout << "1. Document\t2.Package\n";
 	std::cout << "Type: ";
 	std::cin >> type;
-	{std::ofstream fileout;
-    fileout.open("infor.text", std::ios::app);
-    fileout<<type<<"\n";
-    fileout.close();}
 	if (type == DOCUMENT)
 		Form = new DocumentShippingForm;
 	else if (type == PACKAGE)
@@ -226,7 +187,7 @@ void inputFormList(ShippingFormList& List) {
 				fileout.close();
 			}
 			inputForm(Form);
-
+			saveInputInfor(Form);
 			List.FormList.push_back(Form);
 
 			std::cout << "\nThe current database has " << List.FormList.size() << " forms\n";
@@ -393,4 +354,24 @@ void printRevenue(ShippingFormList &List) {
 	}
 
 	std::cout << "\nRevenue from " << convertDate(from_date) << " to " << convertDate(to_date) << ": " << revenue << std::endl;
+}
+void saveInputInfor(ShippingForm* &Form){
+	std::ofstream fileout;
+    fileout.open("infor.text", std::ios::app);
+	fileout<<Form->getType()<<"\n";
+    fileout<<Form->sender_name<<"\n";
+	fileout<<Form->from_address<<"\n";
+	fileout<<Form->sent_date<<"\n";
+	fileout<<Form->receiver_name<<"\n";
+	fileout<<Form->to_address<<"\n";
+	fileout<<Form->received_date<<"\n";
+	
+	if(Form->getType() == DOCUMENT) {
+		fileout << ((DocumentShippingForm*) Form)->distance;
+	}
+	else if(Form->getType() ==PACKAGE){
+		fileout<<((PackageShippingForm*)Form)->distance<<"\n";
+		fileout<<((PackageShippingForm*)Form)->weight;
+	}
+    fileout.close();
 }
