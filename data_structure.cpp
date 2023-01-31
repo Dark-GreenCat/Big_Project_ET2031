@@ -102,7 +102,7 @@ void DocumentShippingForm::inputDetailInfo() {
 	std::cin >> distance;
 	{std::ofstream fileout;
     fileout.open("infor.text", std::ios::app);
-    fileout<<distance<<"\n";
+    fileout<<distance;
     fileout.close();}
 }
 
@@ -133,7 +133,7 @@ void PackageShippingForm::inputDetailInfo() {
 	std::cin >> weight;
 	{std::ofstream fileout;
     fileout.open("infor.text", std::ios::app);
-    fileout<<weight<<"\n";
+    fileout<<weight;
     fileout.close();}
 }
 
@@ -163,16 +163,12 @@ void ShippingFormList::replaceForm(ShippingForm* &NewForm, int index) {
 }
 
 void ShippingFormList::inputList(std::ifstream &filein) {
-	char choice = 'N';
-	filein >> choice;
+	ShippingForm* Form;
 
-	if (choice == 'Y' || choice == 'y')
-		do {
-			ShippingForm* Form;
-			inputForm(Form, filein);
-			this->FormList.push_back(Form);
-			filein >> choice;
-		} while (choice == 'Y' || choice == 'y');
+	while(!filein.eof()) {
+		inputForm(Form, filein);
+		this->FormList.push_back(Form);
+	}
 }
 
 ////////////////////////////
@@ -219,15 +215,14 @@ void inputFormList(ShippingFormList& List) {
 	std::cout << "The current database has " << List.FormList.size() << " forms\n";
 	std::cout << "Do you want to add more forms? (Y/N) :";
 	std::cin >> choice;
-	{std::ofstream fileout;
-    fileout.open("infor.text", std::ios::app);
-    fileout<<choice<<"\n";
-    fileout.close();}
-
 
 	if (choice == 'Y' || choice == 'y')
 		do {
 			ShippingForm *Form;
+			{std::ofstream fileout;
+			fileout.open("infor.text", std::ios::app);
+			fileout<<"\n";
+			fileout.close();}
 			inputForm(Form);
 
 			List.FormList.push_back(Form);
@@ -235,10 +230,6 @@ void inputFormList(ShippingFormList& List) {
 			std::cout << "\nThe current database has " << List.FormList.size() << " forms\n";
 			std::cout << "Do you want to add more forms? (Y/N) :";
 			std::cin >> choice;
-			{std::ofstream fileout;
-    		fileout.open("infor.text", std::ios::app);
-    		fileout<<choice<<"\n";
-    		fileout.close();}
 		} while (choice == 'Y' || choice == 'y');
 }
 
