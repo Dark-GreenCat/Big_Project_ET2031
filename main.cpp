@@ -19,6 +19,7 @@ int main() {
     printFormList(List);
     filein.close();
 
+    loadInputMoney(default_money);
     //printAllFormToFile(List);
     int option;
     /* DELIVERY FORMS MANAGERMENT PROGRAM */
@@ -57,6 +58,7 @@ int main() {
             
             case 6: // Update price
                 updatePrice();
+                
                 break;
 
             case 7:

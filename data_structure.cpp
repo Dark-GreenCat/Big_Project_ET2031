@@ -338,6 +338,7 @@ void updatePrice() {
 	std::cout << "New price:\n";
 	std::cout <<"1. Document:\nService: " << default_money.DOC_service << "\nDistance: " << default_money.DOC_distance << std::endl;
 	std::cout <<"2. Package:\nWeight: " << default_money.PAC_weight << "\nDistance: " << default_money.PAC_distance << std::endl;
+	printMoneyToFile(default_money);
 }
 
 void printRevenue(ShippingFormList &List) {
@@ -417,4 +418,23 @@ void printAllFormToFile(ShippingFormList &List){
 		}
 		fileout.close();
 	}
+}
+void printMoneyToFile(Price money){
+	creatNewFile("money.txt");
+	std::ofstream fileout;
+	fileout.open("money.txt", std::ios::app);
+	fileout<<money.DOC_service<<"\n";
+	fileout<<money.DOC_distance<<"\n";
+	fileout<<money.PAC_weight<<"\n";
+	fileout<<money.PAC_distance;
+	fileout.close();
+}
+void loadInputMoney(Price &money){
+	std::ifstream filein;
+    filein.open("money.txt", std::ios_base::in);
+	filein>>money.DOC_service;
+	filein>>money.DOC_distance;
+	filein>>money.PAC_weight;
+	filein>>money.PAC_distance;
+	filein.close();
 }
