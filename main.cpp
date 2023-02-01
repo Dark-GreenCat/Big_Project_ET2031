@@ -4,7 +4,7 @@
 #include <string>
 #include <cstring>
 #include <vector>
-
+#include<cstdio>
 using namespace std;
 
 #define MAX_NUMBER_OF_FORM 100
@@ -19,6 +19,8 @@ int main() {
     printFormList(List);
     filein.close();
 
+    loadInputMoney(default_money);
+    //printAllFormToFile(List);
     int option;
     /* DELIVERY FORMS MANAGERMENT PROGRAM */
     while (true) {
@@ -56,6 +58,7 @@ int main() {
             
             case 6: // Update price
                 updatePrice();
+                
                 break;
 
             case 7:
@@ -80,4 +83,5 @@ int main() {
                 break;
         }
     }
+    
 }
