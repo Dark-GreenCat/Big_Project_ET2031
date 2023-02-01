@@ -245,6 +245,7 @@ void removeFormList(ShippingFormList &List) {
 				std::cin >> choice;
 			}
 		} while (choice == 'Y' || choice == 'y');
+		printAllFormToFile(List);
 }
 
 void editFormList(ShippingFormList &List) {
@@ -278,6 +279,7 @@ void editFormList(ShippingFormList &List) {
 				std::cin >> choice;
 			}
 		} while (choice == 'Y' || choice == 'y');
+		printAllFormToFile(List);
 }
 
 void searchFormList(ShippingFormList &List) {
@@ -374,4 +376,45 @@ void saveInputInfor(ShippingForm* &Form){
 		fileout<<((PackageShippingForm*)Form)->weight;
 	}
     fileout.close();
+}
+//////////////
+void creatNewFile(std::string file_name) {
+    std::ofstream file(file_name);
+    file.close();
+}
+bool ifFileExist(std::string file_name) {
+    std::ifstream file;
+    file.open(file_name);
+
+    if(file) return true;
+    else return false;
+}
+void renameFile(const char* old_name, const char* new_name) {
+    rename(old_name, new_name);
+}
+void removeFile(const char* file_name) {
+    remove(file_name);
+}
+void printAllFormToFile(ShippingFormList &List){
+    creatNewFile("infor.text");
+	std::ofstream fileout;
+		fileout.open("infor.text", std::ios::app);
+	saveInputInfor(List.FormList.at(0));
+	for(int i=1;i<List.FormList.size();i++){
+		fileout<<"\n"<<List.FormList.at(i)->getType()<<"\n";
+		fileout<<List.FormList.at(i)->sender_name<<"\n";
+		fileout<<List.FormList.at(i)->from_address<<"\n";
+		fileout<<List.FormList.at(i)->sent_date<<"\n";
+		fileout<<List.FormList.at(i)->receiver_name<<"\n";
+		fileout<<List.FormList.at(i)->to_address<<"\n";
+		fileout<<List.FormList.at(i)->received_date<<"\n";
+		if(List.FormList.at(i)->getType() == DOCUMENT) {
+			fileout << ((DocumentShippingForm*) List.FormList.at(i))->distance;
+		}
+		else if(List.FormList.at(i)->getType() ==PACKAGE){
+			fileout<<((PackageShippingForm*)List.FormList.at(i))->distance<<"\n";
+			fileout<<((PackageShippingForm*)List.FormList.at(i))->weight;
+		}
+		fileout.close();
+	}
 }
