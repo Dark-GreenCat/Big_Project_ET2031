@@ -19,7 +19,7 @@ int main() {
     printFormList(List);
     filein.close();
 
-    printAllFormToFile(List);
+    //printAllFormToFile(List);
     int option;
     /* DELIVERY FORMS MANAGERMENT PROGRAM */
     while (true) {
