@@ -124,4 +124,5 @@ void printAllFormToFile(ShippingFormList &List);
 
 void printMoneyToFile(Price money);
 void loadInputMoney(Price money);
+
 #endif

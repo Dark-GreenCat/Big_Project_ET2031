@@ -378,7 +378,7 @@ void saveInputInfor(ShippingForm* &Form){
 	}
     fileout.close();
 }
-//////////////
+
 void creatNewFile(std::string file_name) {
     std::ofstream file(file_name);
     file.close();
