@@ -399,8 +399,9 @@ void removeFile(const char* file_name) {
 void printAllFormToFile(ShippingFormList &List){
     creatNewFile("infor.text");
 	std::ofstream fileout;
-		fileout.open("infor.text", std::ios::app);
-	saveInputInfor(List.FormList.at(0));
+	fileout.open("infor.text", std::ios::app);
+	if(List.FormList.size() > 0)
+		saveInputInfor(List.FormList.at(0));
 	for(int i=1;i<List.FormList.size();i++){
 		fileout<<"\n"<<List.FormList.at(i)->getType()<<"\n";
 		fileout<<List.FormList.at(i)->sender_name<<"\n";
