@@ -1,11 +1,12 @@
 #include "data_structure.h"
 #include "function.h"
 #include "ui_console.h"
+#include "file.h"
 #include <iostream>
 #include <string>
 #include <cstring>
 #include <vector>
-#include<cstdio>
+#include <cstdio>
 using namespace std;
 
 #define MAX_NUMBER_OF_FORM 100
