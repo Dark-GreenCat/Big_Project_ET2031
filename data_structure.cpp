@@ -228,6 +228,7 @@ void removeFormList(ShippingFormList &List) {
 			int number_of_forms = List.FormList.size();
 			if (number_of_forms <= 0) {
 				std::cout << "No forms available to remove\n";
+				printAllFormToFile(List);
 				return;
 			}
 			else {
