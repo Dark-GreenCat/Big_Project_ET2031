@@ -101,19 +101,6 @@ void inputForm(ShippingForm* &Form);
 void inputForm(ShippingForm* &Form, std::ifstream &filein);
 void outputAllFormInfo(ShippingForm &Form);
 
-void inputFormList(ShippingFormList &List);
-void printFormList(ShippingFormList &List);
-void printSpecificForm(ShippingFormList &List);
-
-void removeFormList(ShippingFormList &List);
-void editFormList(ShippingFormList &List);
-void searchFormList(ShippingFormList &List);
-
-void listCompletedFileByTime(ShippingFormList &List);
-
-void updatePrice();
-void printRevenue(ShippingFormList &List);
-
 void saveInputInfor(ShippingForm* &Form);
 
 void creatNewFile(std::string file_name);

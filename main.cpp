@@ -1,5 +1,6 @@
 #include "data_structure.h"
 #include "function.h"
+#include "ui_console.h"
 #include <iostream>
 #include <string>
 #include <cstring>
