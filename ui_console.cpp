@@ -1,4 +1,5 @@
 #include "ui_console.h"
+#include "io_console.h"
 #include "file.h"
 
 void printMenu() {

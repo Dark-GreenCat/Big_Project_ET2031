@@ -7,7 +7,7 @@
 #include <vector>
 #include <limits>
 #include <fstream>
-#include<cstdio>
+#include <cstdio>
 
 #define DEFAULT_ID 0
 #define BLANK_TEXT ""
@@ -97,7 +97,7 @@ class ShippingFormList {
 };
 
 
-void inputForm(ShippingForm*& Form);
+//void inputForm(ShippingForm*& Form);
 void inputForm(ShippingForm*& Form, std::ifstream& filein);
 void outputAllFormInfo(ShippingForm& Form);
 
