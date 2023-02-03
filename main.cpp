@@ -1,23 +1,11 @@
 #include "library.h"
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <vector>
-#include <cstdio>
+
 using namespace std;
 
 int main() { 
-    ShippingFormList List;
-    
-    ifstream filein;
-    filein.open(INFOR_FILE, ios_base::in);
-    filein.peek();
-    List.inputList(filein);
-    printFormList(List);
-    filein.close();
+    FormManagementSystemInit Program(List);
+    Program.init();
 
-    loadInputMoney(current_price);
-    //printAllFormToFile(List);
     int option;
     /* DELIVERY FORMS MANAGERMENT PROGRAM */
     while (true) {
