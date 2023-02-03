@@ -32,18 +32,6 @@ void ShippingForm::inputGeneralInfo(std::ifstream &filein)
 	filein >> received_date;
 }
 
-void ShippingForm::outputGeneralInfo() {
-	std::cout << "Sender's name: " << sender_name;
-	std::cout << "\nFrom address: " << from_address;
-	std::cout << "\nSent date: " << convertDate(sent_date);
-
-	std::cout << std::endl;
-
-	std::cout << "Receiver's name: " << receiver_name;
-	std::cout << "\nTo address: " << to_address;
-	std::cout << "\nReceived date: " << convertDate(received_date);
-}
-
 /////////////////////////////////////
 int DocumentShippingForm::getType(){
 	return DOCUMENT;
@@ -58,10 +46,6 @@ void DocumentShippingForm::inputDetailInfo(std::ifstream &filein)
 	filein >> distance;
 }
 
-void DocumentShippingForm::outputDetailInfo() {
-	std::cout << "Distance (km): " << distance;
-}
-
 /////////////////////////////////////
 int PackageShippingForm::getType(){
 	return PACKAGE;
@@ -74,11 +58,6 @@ void PackageShippingForm::inputDetailInfo(std::ifstream &filein)
 {
 	filein >> distance;
 	filein >> weight;
-}
-
-void PackageShippingForm::outputDetailInfo() {
-	std::cout << "Distance (km): " << distance << std::endl;
-	std::cout << "Weight (kg): " << weight;
 }
 
 ///////////////////////////////////
@@ -131,12 +110,6 @@ void inputForm(ShippingForm* &Form, std::ifstream &filein)
 
 	Form->inputGeneralInfo(filein);
 	Form->inputDetailInfo(filein);
-}
-
-void outputAllFormInfo(ShippingForm &Form) {
-	Form.outputGeneralInfo();
-	std::cout << std::endl;
-	Form.outputDetailInfo();
 }
 
 

@@ -10,5 +10,6 @@ void inputForm(ShippingForm*& Form);
 
 void printGeneralInfoToConsole(ShippingForm*& Form);
 void printDetailInfoToConsole(ShippingForm*& Form);
+void printInfoToConsole(ShippingForm*& Form);
 
 #endif

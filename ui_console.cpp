@@ -54,7 +54,7 @@ void printFormList(ShippingFormList &List) {
 	std::cout << "\nNumber of form: " << List.FormList.size() << std::endl;
 	for(int i = 0; i < List.FormList.size(); i++) {
 		std::cout << "\nForm #" << (i + 1) << std::endl;
-		outputAllFormInfo(*List.FormList.at(i));
+		printInfoToConsole(List.FormList[i]);
 		std::cout << std::endl;
 	}
 }
@@ -66,7 +66,7 @@ void printSpecificForm(ShippingFormList &List) {
 	std::cin >> index;
 
 	std::cout << "\nForm #" << index << std::endl;
-	outputAllFormInfo(*List.FormList.at(index - 1));
+	printInfoToConsole(List.FormList[index - 1]);
 	std::cout << std::endl;
 }
 

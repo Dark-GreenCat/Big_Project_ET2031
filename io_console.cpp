@@ -70,5 +70,12 @@ void printDetailInfoToConsole(ShippingForm*& Form) {
 	}
 }
 
+void printInfoToConsole(ShippingForm*& Form) {
+	printGeneralInfoToConsole(Form);
+	std::cout << std::endl;
+	printDetailInfoToConsole(Form);
+
+}
+
 
 
