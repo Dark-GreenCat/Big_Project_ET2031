@@ -6,6 +6,7 @@
 #include "ui_console.h"
 #include "file.h"
 #include "init.h"
+#include "program_object.h"
 
 #include <iostream>
 #include <string>

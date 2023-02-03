@@ -132,6 +132,8 @@ void editFormList(ShippingFormList& List) {
 			}
 		} while (choice == 'Y' || choice == 'y');
 	}
+
+	printAllFormToFile(List);
 }
 
 void searchFormList(ShippingFormList& List) {

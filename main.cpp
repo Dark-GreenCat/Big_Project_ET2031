@@ -2,8 +2,6 @@
 
 using namespace std;
 
-ShippingFormList List;
-
 int main() { 
     FormManagementSystemInit Program(List);
     Program.init();
@@ -30,7 +28,6 @@ int main() {
 
             case 2: // Edit a form
                 editFormList(List);
-                printAllFormToFile(List);
                 break;
 
             case 3: // Remove a form
