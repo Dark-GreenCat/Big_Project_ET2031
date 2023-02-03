@@ -32,18 +32,6 @@ void ShippingForm::inputGeneralInfo(std::ifstream &filein)
 	filein >> received_date;
 }
 
-void ShippingForm::inputForm(std::ifstream& filein) {
-	int type;
-	filein >> type;
-	if (type == DOCUMENT)
-		this = new DocumentShippingForm;
-	else if (type == PACKAGE)
-		Form = new PackageShippingForm;
-
-	Form->inputGeneralInfo(filein);
-	Form->inputDetailInfo(filein);
-}
-
 /////////////////////////////////////
 int DocumentShippingForm::getType(){
 	return DOCUMENT;
@@ -90,7 +78,15 @@ void ShippingFormList::inputList(std::ifstream &filein) {
 	ShippingForm* Form;
 
 	while(!filein.eof()) {
-		inputForm(Form, filein);
+		int type;
+		filein >> type;
+		if (type == DOCUMENT)
+			Form = new DocumentShippingForm;
+		else if (type == PACKAGE)
+			Form = new PackageShippingForm;
+
+		Form->inputGeneralInfo(filein);
+		Form->inputDetailInfo(filein);
 		this->FormList.push_back(Form);
 	}
 }
