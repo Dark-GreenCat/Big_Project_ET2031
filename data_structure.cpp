@@ -19,8 +19,7 @@ ShippingForm::~ShippingForm() {
 	delete this;
 }
 
-void ShippingForm::inputGeneralInfo(std::ifstream &filein)
-{
+void ShippingForm::inputGeneralInfo(std::ifstream& filein) {
 	filein.ignore();
 	getline(filein, sender_name);
 	getline(filein, from_address); // std::cin.ignore(MAX_STREAMSIZE, '\n');
@@ -33,34 +32,32 @@ void ShippingForm::inputGeneralInfo(std::ifstream &filein)
 }
 
 /////////////////////////////////////
-int DocumentShippingForm::getType(){
+int DocumentShippingForm::getType() {
 	return DOCUMENT;
 }
 double DocumentShippingForm::getShippingPrice(Price custom_price) {
 	return (distance * custom_price.DOC_distance + custom_price.DOC_service);
 }
 
-void DocumentShippingForm::inputDetailInfo(std::ifstream &filein)
-{
+void DocumentShippingForm::inputDetailInfo(std::ifstream& filein) {
 	filein >> distance;
 }
 
 /////////////////////////////////////
-int PackageShippingForm::getType(){
+int PackageShippingForm::getType() {
 	return PACKAGE;
 }
-double PackageShippingForm::getShippingPrice(Price custom_price){
+double PackageShippingForm::getShippingPrice(Price custom_price) {
 	return (distance * custom_price.PAC_distance + weight * custom_price.PAC_weight);
 }
 
-void PackageShippingForm::inputDetailInfo(std::ifstream &filein)
-{
+void PackageShippingForm::inputDetailInfo(std::ifstream& filein) {
 	filein >> distance;
 	filein >> weight;
 }
 
 ///////////////////////////////////
-void ShippingFormList::addForm(ShippingForm* &Form) {
+void ShippingFormList::addForm(ShippingForm*& Form) {
 	this->FormList.push_back(Form);
 }
 
@@ -68,15 +65,15 @@ void ShippingFormList::removeForm(int index) {
 	this->FormList.erase(FormList.begin() + index);
 }
 
-void ShippingFormList::replaceForm(ShippingForm* &NewForm, int index) {
+void ShippingFormList::replaceForm(ShippingForm*& NewForm, int index) {
 	this->FormList.insert(FormList.begin() + index, NewForm);
 	this->removeForm(index + 1);
 }
 
-void ShippingFormList::inputList(std::ifstream &filein) {
+void ShippingFormList::inputList(std::ifstream& filein) {
 	ShippingForm* Form;
 
-	while(!filein.eof()) {
+	while (!filein.eof()) {
 		int type;
 		filein >> type;
 		if (type == DOCUMENT)

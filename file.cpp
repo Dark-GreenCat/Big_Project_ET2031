@@ -31,30 +31,30 @@ void saveInputInfor(ShippingForm*& Form, std::ofstream& fileout) {
 }
 
 void creatNewFile(std::string file_name) {
-    std::ofstream file(file_name);
-    file.close();
+	std::ofstream file(file_name);
+	file.close();
 }
 
 bool isFileExist(std::string file_name) {
-    std::ifstream file;
-    file.open(file_name);
+	std::ifstream file;
+	file.open(file_name);
 
-	bool isExit = (bool) file;
+	bool isExit = (bool)file;
 	file.close();
 
-    return isExit;
+	return isExit;
 }
 
 void renameFile(const char* old_name, const char* new_name) {
-    rename(old_name, new_name);
+	rename(old_name, new_name);
 }
 
 void removeFile(const char* file_name) {
-    remove(file_name);
+	remove(file_name);
 }
 
-void printAllFormToFile(ShippingFormList &List){
-    creatNewFile(INFOR_FILE);
+void printAllFormToFile(ShippingFormList& List) {
+	creatNewFile(INFOR_FILE);
 	std::ofstream fileout;
 	fileout.open(INFOR_FILE, std::ios::app);
 
@@ -69,23 +69,23 @@ void printAllFormToFile(ShippingFormList &List){
 	fileout.close();
 }
 
-void printMoneyToFile(Price money){
+void printMoneyToFile(Price money) {
 	creatNewFile(MONEY_FILE);
 	std::ofstream fileout;
 	fileout.open(MONEY_FILE, std::ios::app);
-	fileout<<money.DOC_service<<"\n";
-	fileout<<money.DOC_distance<<"\n";
-	fileout<<money.PAC_weight<<"\n";
-	fileout<<money.PAC_distance;
+	fileout << money.DOC_service << "\n";
+	fileout << money.DOC_distance << "\n";
+	fileout << money.PAC_weight << "\n";
+	fileout << money.PAC_distance;
 	fileout.close();
 }
 
-void loadInputMoney(Price &money, std::string data_file){
+void loadInputMoney(Price& money, std::string data_file) {
 	std::ifstream filein;
-    filein.open(data_file, std::ios_base::in);
-	filein>>money.DOC_service;
-	filein>>money.DOC_distance;
-	filein>>money.PAC_weight;
-	filein>>money.PAC_distance;
+	filein.open(data_file, std::ios_base::in);
+	filein >> money.DOC_service;
+	filein >> money.DOC_distance;
+	filein >> money.PAC_weight;
+	filein >> money.PAC_distance;
 	filein.close();
 }

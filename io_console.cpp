@@ -1,7 +1,7 @@
 #include "io_console.h"
 
 void inputGeneralInfoShippingForm(ShippingForm*& Form) {
-   	std::cin.ignore();
+	std::cin.ignore();
 	std::cout << "Sender's name: ";
 	getline(std::cin, Form->sender_name);
 	std::cout << "From address: ";
@@ -21,16 +21,16 @@ void inputGeneralInfoShippingForm(ShippingForm*& Form) {
 }
 
 void inputDetailInfoShippingForm(ShippingForm*& Form) {
-    if(Form->getType() == DOCUMENT) {
-        std::cout << "Enter distance (km): ";
-	    std::cin >> ((DocumentShippingForm*) Form)->distance;
-    }
-    else if(Form->getType() == PACKAGE) {
-        std::cout << "Enter distance (km): ";
-        std::cin >>  ((PackageShippingForm*) Form)->distance;
-        std::cout << "Enter weight (kg): ";
-        std::cin >>  ((PackageShippingForm*) Form)->weight;
-    }
+	if (Form->getType() == DOCUMENT) {
+		std::cout << "Enter distance (km): ";
+		std::cin >> ((DocumentShippingForm*)Form)->distance;
+	}
+	else if (Form->getType() == PACKAGE) {
+		std::cout << "Enter distance (km): ";
+		std::cin >> ((PackageShippingForm*)Form)->distance;
+		std::cout << "Enter weight (kg): ";
+		std::cin >> ((PackageShippingForm*)Form)->weight;
+	}
 }
 
 void inputForm(ShippingForm*& Form) {
@@ -61,12 +61,12 @@ void printGeneralInfoToConsole(ShippingForm*& Form) {
 }
 
 void printDetailInfoToConsole(ShippingForm*& Form) {
-	if(Form->getType() == DOCUMENT) {
-		std::cout << "Distance (km): " << ((DocumentShippingForm*) Form)->distance;
+	if (Form->getType() == DOCUMENT) {
+		std::cout << "Distance (km): " << ((DocumentShippingForm*)Form)->distance;
 	}
-	else if(Form->getType() == PACKAGE) {
-		std::cout << "Distance (km): " << ((PackageShippingForm*) Form)->distance << std::endl;
-		std::cout << "Weight (kg): " << ((PackageShippingForm*) Form)->weight;
+	else if (Form->getType() == PACKAGE) {
+		std::cout << "Distance (km): " << ((PackageShippingForm*)Form)->distance << std::endl;
+		std::cout << "Weight (kg): " << ((PackageShippingForm*)Form)->weight;
 	}
 }
 

@@ -7,5 +7,4 @@
 
 std::string convertDate(int date);
 
-
 #endif 

@@ -15,7 +15,7 @@ void printMenu() {
 	std::cout << "\t8. Print specific form\n";
 	std::cout << "\t9. Print all forms\n";
 	std::cout << "\t10. Exit program\n";
-	std::cout << "\n\t-> Your option: "; 
+	std::cout << "\n\t-> Your option: ";
 }
 
 void inputFormList(ShippingFormList& List) {
@@ -26,7 +26,7 @@ void inputFormList(ShippingFormList& List) {
 
 	if (choice == 'Y' || choice == 'y')
 		do {
-			ShippingForm *Form;
+			ShippingForm* Form;
 			if (List.FormList.size() > 0) {
 				std::ofstream fileout;
 				fileout.open(INFOR_FILE, std::ios::app);
@@ -47,16 +47,16 @@ void inputFormList(ShippingFormList& List) {
 		} while (choice == 'Y' || choice == 'y');
 }
 
-void printFormList(ShippingFormList &List) {
+void printFormList(ShippingFormList& List) {
 	std::cout << "\nNumber of form: " << List.FormList.size() << std::endl;
-	for(int i = 0; i < List.FormList.size(); i++) {
+	for (int i = 0; i < List.FormList.size(); i++) {
 		std::cout << "\nForm #" << (i + 1) << std::endl;
 		printInfoToConsole(List.FormList[i]);
 		std::cout << std::endl;
 	}
 }
 
-void printSpecificForm(ShippingFormList &List) {
+void printSpecificForm(ShippingFormList& List) {
 	int index = 0;
 	std::cout << "\nThe current database has " << List.FormList.size() << " forms\n";
 	std::cout << "Choose a form to view its info [1 - " << List.FormList.size() << "]: ";
@@ -68,7 +68,7 @@ void printSpecificForm(ShippingFormList &List) {
 }
 
 
-void removeFormList(ShippingFormList &List) {
+void removeFormList(ShippingFormList& List) {
 	char choice = 'N';
 	std::cout << "\nThe current database has " << List.FormList.size() << " forms\n";
 	std::cout << "Do you want to remove a form? (Y/N) :";
@@ -100,7 +100,7 @@ void removeFormList(ShippingFormList &List) {
 		printAllFormToFile(List);
 }
 
-void editFormList(ShippingFormList &List) {
+void editFormList(ShippingFormList& List) {
 	char choice = 'N';
 	std::cout << "The current database has " << List.FormList.size() << " forms\n";
 	std::cout << "Do you want to edit more forms? (Y/N) :";
@@ -120,7 +120,7 @@ void editFormList(ShippingFormList &List) {
 					std::cin >> form_index;
 				} while (form_index < 0 || form_index >= number_of_forms);
 
-				
+
 				std::cout << "Editing form number [" << form_index << "]:\n\n";
 				ShippingForm* NewForm;
 				inputForm(NewForm);
@@ -134,27 +134,27 @@ void editFormList(ShippingFormList &List) {
 	}
 }
 
-void searchFormList(ShippingFormList &List) {
+void searchFormList(ShippingFormList& List) {
 	std::string search_str;
 	std::cout << "\nEnter address to find forms [Redundant spaces can cause unexpected errors]: ";
 	std::cin.ignore();
 	getline(std::cin, search_str);
 
 	std::vector<int> index;
-	for(int i = 0; i < List.FormList.size(); i++) {
-		if(List.FormList[i]->from_address.find(search_str) != STRING_NOT_FOUND || List.FormList[i]->to_address.find(search_str) != STRING_NOT_FOUND) {
+	for (int i = 0; i < List.FormList.size(); i++) {
+		if (List.FormList[i]->from_address.find(search_str) != STRING_NOT_FOUND || List.FormList[i]->to_address.find(search_str) != STRING_NOT_FOUND) {
 			(index).push_back(i);
 		}
 	}
 
 	std::cout << "\nThere are " << index.size() << " results matched\n";
-	for(int i = 0; i < index.size(); i++) {
+	for (int i = 0; i < index.size(); i++) {
 		std::cout << "Form index: " << index[i] << std::endl;
 	}
 }
 
 
-void listCompletedFileByTime(ShippingFormList &List) {
+void listCompletedFileByTime(ShippingFormList& List) {
 	int from_date = NULL_DATE,
 		to_date = NULL_DATE;
 
@@ -164,8 +164,8 @@ void listCompletedFileByTime(ShippingFormList &List) {
 	std::cin >> to_date;
 
 	std::cout << "\nCompleted delivery:\n";
-	for(int i = 0; i < List.FormList.size(); i++) {
-		if(from_date <= List.FormList[i]->received_date && List.FormList[i]->received_date <= to_date)
+	for (int i = 0; i < List.FormList.size(); i++) {
+		if (from_date <= List.FormList[i]->received_date && List.FormList[i]->received_date <= to_date)
 			std::cout << "Form #" << i + 1 << std::endl;
 	}
 }
@@ -177,11 +177,11 @@ void updatePrice() {
 
 	int option = 0;
 	do {
-			std::cout << "->Your option [1-2]: ";
-			std::cin >> option;
-	} while(!(option == 1 || option == 2));
+		std::cout << "->Your option [1-2]: ";
+		std::cin >> option;
+	} while (!(option == 1 || option == 2));
 
-	if(option == 1) {
+	if (option == 1) {
 		Price custom_price;
 		std::cout << "Enter new price:\n";
 
@@ -199,17 +199,17 @@ void updatePrice() {
 
 		current_price = custom_price;
 	}
-	else if(option == 2) {
+	else if (option == 2) {
 		current_price = default_price;
 	}
 
 	std::cout << "New price:\n";
-	std::cout <<"1. Document:\nService: " << current_price.DOC_service << "\nDistance: " << current_price.DOC_distance << std::endl;
-	std::cout <<"2. Package:\nWeight: " << current_price.PAC_weight << "\nDistance: " << current_price.PAC_distance << std::endl;
+	std::cout << "1. Document:\nService: " << current_price.DOC_service << "\nDistance: " << current_price.DOC_distance << std::endl;
+	std::cout << "2. Package:\nWeight: " << current_price.PAC_weight << "\nDistance: " << current_price.PAC_distance << std::endl;
 	printMoneyToFile(current_price);
 }
 
-void printRevenue(ShippingFormList &List) {
+void printRevenue(ShippingFormList& List) {
 	int from_date = NULL_DATE,
 		to_date = NULL_DATE;
 
@@ -219,8 +219,8 @@ void printRevenue(ShippingFormList &List) {
 	std::cin >> to_date;
 
 	unsigned long long int revenue = 0;
-	for(int i = 0; i < List.FormList.size(); i++) {
-		if(from_date <= List.FormList[i]->received_date && List.FormList[i]->received_date <= to_date)
+	for (int i = 0; i < List.FormList.size(); i++) {
+		if (from_date <= List.FormList[i]->received_date && List.FormList[i]->received_date <= to_date)
 			revenue += List.FormList[i]->getShippingPrice();
 	}
 
