@@ -9,8 +9,9 @@ int main() {
     Program.init();
 
     int option;
+    bool exitProgram = false;
     /* DELIVERY FORMS MANAGERMENT PROGRAM */
-    while (true) {
+    while (!exitProgram) {
         cout << endl;
         printMenu();
         cin >> option;
@@ -63,7 +64,7 @@ int main() {
 
             case 10: // Exit program
                 List.FormList.clear();
-                exit(1);
+                exitProgram = true;
                 break;
 
             default:
