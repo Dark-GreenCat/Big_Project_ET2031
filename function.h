@@ -7,6 +7,5 @@
 
 std::string convertDate(int date);
 
-void printMenu();
-void printEditorMenu();
+
 #endif 

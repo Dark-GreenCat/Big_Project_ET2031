@@ -1,7 +1,4 @@
-#include "data_structure.h"
-#include "function.h"
-#include "ui_console.h"
-#include "file.h"
+#include "library.h"
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -9,11 +6,8 @@
 #include <cstdio>
 using namespace std;
 
-#define MAX_NUMBER_OF_FORM 1000
-
 int main() { 
     ShippingFormList List;
-    List.FormList.resize(MAX_NUMBER_OF_FORM);
     
     ifstream filein;
     filein.open("infor.text", ios_base::in);
