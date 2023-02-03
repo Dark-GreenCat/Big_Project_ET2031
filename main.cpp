@@ -2,6 +2,8 @@
 
 using namespace std;
 
+ShippingFormList List;
+
 int main() { 
     FormManagementSystemInit Program(List);
     Program.init();
