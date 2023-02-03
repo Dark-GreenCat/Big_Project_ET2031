@@ -52,11 +52,6 @@ double DocumentShippingForm::getShippingPrice(Price custom_price) {
 	return (distance * custom_price.DOC_distance + custom_price.DOC_service);
 }
 
-void DocumentShippingForm::inputDetailInfo() {
-	std::cout << "Enter distance (km): ";
-	std::cin >> distance;
-}
-
 void DocumentShippingForm::inputDetailInfo(std::ifstream &filein)
 {
 	std::cout << "Enter distance (km): ";
@@ -73,13 +68,6 @@ int PackageShippingForm::getType(){
 }
 double PackageShippingForm::getShippingPrice(Price custom_price){
 	return (distance * custom_price.PAC_distance + weight * custom_price.PAC_weight);
-}
-
-void PackageShippingForm::inputDetailInfo() {
-	std::cout << "Enter distance (km): ";
-	std::cin >> distance;
-	std::cout << "Enter weight (kg): ";
-	std::cin >> weight;
 }
 
 void PackageShippingForm::inputDetailInfo(std::ifstream &filein)

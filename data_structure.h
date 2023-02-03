@@ -51,7 +51,6 @@ class ShippingForm {
 		virtual int getType() = 0;
 		void inputGeneralInfo(std::ifstream& filein);
 		void outputGeneralInfo();
-		virtual void inputDetailInfo() = 0;
 		virtual void inputDetailInfo(std::ifstream& filein) = 0;
 		virtual void outputDetailInfo() = 0;
 
@@ -65,7 +64,6 @@ class DocumentShippingForm : public ShippingForm {
 	public:
 		virtual int getType();
 		virtual double getShippingPrice(Price money = default_money);
-		virtual void inputDetailInfo();
 		virtual void inputDetailInfo(std::ifstream& filein);
 		virtual void outputDetailInfo();
 };
@@ -78,7 +76,6 @@ class PackageShippingForm : public ShippingForm {
 	public:
 		virtual int getType();
 		virtual double getShippingPrice(Price money = default_money); 
-		virtual void inputDetailInfo();
 		virtual void inputDetailInfo(std::ifstream &filein);
 		virtual void outputDetailInfo();
 };
