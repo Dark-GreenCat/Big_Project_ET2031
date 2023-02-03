@@ -49,7 +49,6 @@ class ShippingForm {
 		ShippingForm();
 		~ShippingForm();
 		virtual int getType() = 0;
-		void inputGeneralInfo();
 		void inputGeneralInfo(std::ifstream& filein);
 		void outputGeneralInfo();
 		virtual void inputDetailInfo() = 0;

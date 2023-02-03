@@ -17,26 +17,6 @@ ShippingForm::~ShippingForm() {
 	delete this;
 }
 
-void ShippingForm::inputGeneralInfo() {
-	std::cin.ignore();
-	std::cout << "Sender's name: ";
-	getline(std::cin, sender_name);
-	std::cout << "From address: ";
-	getline(std::cin, from_address); //std::cin.ignore(MAX_STREAMSIZE, '\n');
-	std::cout << "Sent date (yyyymmdd): ";
-	std::cin >> sent_date;
-
-	std::cout << std::endl;
-
-	std::cin.ignore();
-	std::cout << "Receiver's name: ";
-	getline(std::cin, receiver_name);
-	std::cout << "To address: ";
-	getline(std::cin, to_address);
-	std::cout << "Received date (yyyymmdd): ";
-	std::cin >> received_date;
-}
-
 void ShippingForm::inputGeneralInfo(std::ifstream &filein)
 {
 	filein.ignore();

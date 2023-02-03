@@ -1,5 +1,17 @@
 #include "file.h"
 
+void loadForm(ShippingForm*& Form, std::ifstream& filein) {
+	int type;
+	filein >> type;
+	if (type == DOCUMENT)
+		Form = new DocumentShippingForm;
+	else if (type == PACKAGE)
+		Form = new PackageShippingForm;
+
+	Form->inputGeneralInfo(filein);
+	Form->inputDetailInfo(filein);
+}
+
 void saveInputInfor(ShippingForm* &Form){
 	std::ofstream fileout;
     fileout.open("infor.text", std::ios::app);

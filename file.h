@@ -3,6 +3,8 @@
 
 #include "data_structure.h"
 
+void loadForm(ShippingForm*& Form, std::ifstream& filein);
+
 void saveInputInfor(ShippingForm* &Form);
 
 void creatNewFile(std::string file_name);
