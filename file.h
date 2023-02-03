@@ -3,6 +3,9 @@
 
 #include "data_structure.h"
 
+#define INFOR_FILE "infor.txt"
+#define MONEY_FILE "money.txt"
+
 void loadForm(ShippingForm*& Form, std::ifstream& filein);
 
 void saveInputInfor(ShippingForm* &Form);

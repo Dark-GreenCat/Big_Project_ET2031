@@ -18,13 +18,6 @@ void printMenu() {
 	std::cout << "\n\t-> Your option: "; 
 }
 
-void printEditorMenu() {
-	std::cout << "\t\tFORM EDITOR\n";
-	std::cout << "\t1. Add a form\n";
-	std::cout << "\t2. Edit a form\n";
-	std::cout << "\t3. Remove a form\n";	
-}
-
 void inputFormList(ShippingFormList& List) {
 	char choice = 'N';
 	std::cout << "The current database has " << List.FormList.size() << " forms\n";
@@ -36,7 +29,7 @@ void inputFormList(ShippingFormList& List) {
 			ShippingForm *Form;
 			if (List.FormList.size() > 0) {
 				std::ofstream fileout;
-				fileout.open("infor.text", std::ios::app);
+				fileout.open(INFOR_FILE, std::ios::app);
 				fileout << "\n";
 				fileout.close();
 			}
@@ -145,14 +138,14 @@ void searchFormList(ShippingFormList &List) {
 
 	std::vector<int> index;
 	for(int i = 0; i < List.FormList.size(); i++) {
-		if(List.FormList.at(i)->from_address.find(search_str) != STRING_NOT_FOUND || List.FormList.at(i)->to_address.find(search_str) != STRING_NOT_FOUND) {
+		if(List.FormList[i]->from_address.find(search_str) != STRING_NOT_FOUND || List.FormList[i]->to_address.find(search_str) != STRING_NOT_FOUND) {
 			(index).push_back(i);
 		}
 	}
 
 	std::cout << "\nThere are " << index.size() << " results matched\n";
 	for(int i = 0; i < index.size(); i++) {
-		std::cout << "Form index: " << index.at(i) << std::endl;
+		std::cout << "Form index: " << index[i] << std::endl;
 	}
 }
 
@@ -168,7 +161,7 @@ void listCompletedFileByTime(ShippingFormList &List) {
 
 	std::cout << "\nCompleted delivery:\n";
 	for(int i = 0; i < List.FormList.size(); i++) {
-		if(from_date <= List.FormList.at(i)->received_date && List.FormList.at(i)->received_date <= to_date)
+		if(from_date <= List.FormList[i]->received_date && List.FormList[i]->received_date <= to_date)
 			std::cout << "Form #" << i + 1 << std::endl;
 	}
 }
@@ -207,8 +200,8 @@ void printRevenue(ShippingFormList &List) {
 
 	unsigned long long int revenue = 0;
 	for(int i = 0; i < List.FormList.size(); i++) {
-		if(from_date <= List.FormList.at(i)->received_date && List.FormList.at(i)->received_date <= to_date)
-			revenue += List.FormList.at(i)->getShippingPrice();
+		if(from_date <= List.FormList[i]->received_date && List.FormList[i]->received_date <= to_date)
+			revenue += List.FormList[i]->getShippingPrice();
 	}
 
 	std::cout << "\nRevenue from " << convertDate(from_date) << " to " << convertDate(to_date) << ": " << revenue << std::endl;

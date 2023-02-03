@@ -10,7 +10,7 @@ int main() {
     ShippingFormList List;
     
     ifstream filein;
-    filein.open("infor.text", ios_base::in);
+    filein.open(INFOR_FILE, ios_base::in);
     filein.peek();
     List.inputList(filein);
     printFormList(List);

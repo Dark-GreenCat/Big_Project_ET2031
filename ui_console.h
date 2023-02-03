@@ -4,7 +4,6 @@
 #include "data_structure.h"
 
 void printMenu();
-void printEditorMenu();
 
 void inputFormList(ShippingFormList &List);
 void printFormList(ShippingFormList &List);
