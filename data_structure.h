@@ -60,7 +60,7 @@ class DocumentShippingForm : public ShippingForm {
 	public:
 		double distance;
 
-	public:
+		~DocumentShippingForm();
 		virtual int getType();
 		virtual double getShippingPrice(Price money = current_price);
 		virtual void inputDetailInfo(std::ifstream& filein);
@@ -71,7 +71,7 @@ class PackageShippingForm : public ShippingForm {
 		double distance;
 		double weight;
 
-	public:
+		~PackageShippingForm();
 		virtual int getType();
 		virtual double getShippingPrice(Price money = current_price); 
 		virtual void inputDetailInfo(std::ifstream &filein);

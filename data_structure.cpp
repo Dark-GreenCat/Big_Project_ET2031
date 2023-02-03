@@ -32,9 +32,14 @@ void ShippingForm::inputGeneralInfo(std::ifstream& filein) {
 }
 
 /////////////////////////////////////
+DocumentShippingForm::~DocumentShippingForm() {
+	delete this;
+}
+
 int DocumentShippingForm::getType() {
 	return DOCUMENT;
 }
+
 double DocumentShippingForm::getShippingPrice(Price custom_price) {
 	return (distance * custom_price.DOC_distance + custom_price.DOC_service);
 }
@@ -44,9 +49,14 @@ void DocumentShippingForm::inputDetailInfo(std::ifstream& filein) {
 }
 
 /////////////////////////////////////
+PackageShippingForm::~PackageShippingForm() {
+	delete this;
+}
+
 int PackageShippingForm::getType() {
 	return PACKAGE;
 }
+
 double PackageShippingForm::getShippingPrice(Price custom_price) {
 	return (distance * custom_price.PAC_distance + weight * custom_price.PAC_weight);
 }

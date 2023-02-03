@@ -8,10 +8,10 @@ int main() {
     FormManagementSystemInit Program(List);
     Program.init();
 
-    int option;
     bool exitProgram = false;
     /* DELIVERY FORMS MANAGERMENT PROGRAM */
     while (!exitProgram) {
+        int option;
         cout << endl;
         printMenu();
         cin >> option;
@@ -72,5 +72,4 @@ int main() {
                 break;
         }
     }
-    
 }

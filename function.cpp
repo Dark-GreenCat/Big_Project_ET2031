@@ -1,4 +1,5 @@
 #include "function.h"
+
 std::string convertDate(int date) {
 	std::ostringstream str;
 	str.fill('0');
