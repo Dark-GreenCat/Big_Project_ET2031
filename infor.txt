@@ -1,16 +1,36 @@
-1
-Barry Allen
-The Fastest Man Alive
-20770802
-Eobard Thawne
-The Reverse Flash
-20991203
-2050
-1
-f
-s
 2
-v
-d
+Bar All
+The fastest man alive
+20770304
+Eobard
+reverse Flashes
+20120304
+2050
+48
+2
+Huy1
+53 Van Mieu
+20210428
+Kien
+43 Ton DUc Thang
+20213955
+12
 3
-5
+2
+Huy1
+53 Van Mieu
+20210428
+Kien
+43 Ton DUc Thang
+20213955
+12
+3
+2
+Huy1
+53 Van Mieu
+20210428
+Kien
+43 Ton DUc Thang
+20213955
+12
+3

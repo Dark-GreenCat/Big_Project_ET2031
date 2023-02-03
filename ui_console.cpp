@@ -34,7 +34,11 @@ void inputFormList(ShippingFormList& List) {
 				fileout.close();
 			}
 			inputForm(Form);
-			saveInputInfor(Form);
+
+			std::ofstream fileout;
+			saveInputInfor(Form, fileout);
+			fileout.close();
+
 			List.FormList.push_back(Form);
 
 			std::cout << "\nThe current database has " << List.FormList.size() << " forms\n";
@@ -102,7 +106,7 @@ void editFormList(ShippingFormList &List) {
 	std::cout << "Do you want to edit more forms? (Y/N) :";
 	std::cin >> choice;
 
-	if (choice == 'Y' || choice == 'y')
+	if (choice == 'Y' || choice == 'y') {
 		do {
 			int number_of_forms = List.FormList.size();
 			if (number_of_forms <= 0) {
@@ -127,7 +131,7 @@ void editFormList(ShippingFormList &List) {
 				std::cin >> choice;
 			}
 		} while (choice == 'Y' || choice == 'y');
-		printAllFormToFile(List);
+	}
 }
 
 void searchFormList(ShippingFormList &List) {

@@ -8,7 +8,7 @@
 
 void loadForm(ShippingForm*& Form, std::ifstream& filein);
 
-void saveInputInfor(ShippingForm* &Form);
+void saveInputInfor(ShippingForm* &Form, std::ofstream& fileout);
 
 void creatNewFile(std::string file_name);
 bool isFileExist(std::string file_name);

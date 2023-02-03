@@ -12,25 +12,22 @@ void loadForm(ShippingForm*& Form, std::ifstream& filein) {
 	Form->inputDetailInfo(filein);
 }
 
-void saveInputInfor(ShippingForm* &Form){
-	std::ofstream fileout;
-    fileout.open(INFOR_FILE, std::ios::app);
-	fileout<<Form->getType()<<"\n";
-    fileout<<Form->sender_name<<"\n";
-	fileout<<Form->from_address<<"\n";
-	fileout<<Form->sent_date<<"\n";
-	fileout<<Form->receiver_name<<"\n";
-	fileout<<Form->to_address<<"\n";
-	fileout<<Form->received_date<<"\n";
-	
-	if(Form->getType() == DOCUMENT) {
-		fileout << ((DocumentShippingForm*) Form)->distance;
+void saveInputInfor(ShippingForm*& Form, std::ofstream& fileout) {
+	fileout << Form->getType() << "\n";
+	fileout << Form->sender_name << "\n";
+	fileout << Form->from_address << "\n";
+	fileout << Form->sent_date << "\n";
+	fileout << Form->receiver_name << "\n";
+	fileout << Form->to_address << "\n";
+	fileout << Form->received_date << "\n";
+
+	if (Form->getType() == DOCUMENT) {
+		fileout << ((DocumentShippingForm*)Form)->distance;
 	}
-	else if(Form->getType() ==PACKAGE){
-		fileout<<((PackageShippingForm*)Form)->distance<<"\n";
-		fileout<<((PackageShippingForm*)Form)->weight;
+	else if (Form->getType() == PACKAGE) {
+		fileout << ((PackageShippingForm*)Form)->distance << "\n";
+		fileout << ((PackageShippingForm*)Form)->weight;
 	}
-    fileout.close();
 }
 
 void creatNewFile(std::string file_name) {
@@ -60,25 +57,16 @@ void printAllFormToFile(ShippingFormList &List){
     creatNewFile(INFOR_FILE);
 	std::ofstream fileout;
 	fileout.open(INFOR_FILE, std::ios::app);
-	if(List.FormList.size() > 0)
-		saveInputInfor(List.FormList[0]);
-	for(int i=1;i<List.FormList.size();i++){
-		fileout<<"\n"<<List.FormList[i]->getType()<<"\n";
-		fileout<<List.FormList[i]->sender_name<<"\n";
-		fileout<<List.FormList[i]->from_address<<"\n";
-		fileout<<List.FormList[i]->sent_date<<"\n";
-		fileout<<List.FormList[i]->receiver_name<<"\n";
-		fileout<<List.FormList[i]->to_address<<"\n";
-		fileout<<List.FormList[i]->received_date<<"\n";
-		if(List.FormList[i]->getType() == DOCUMENT) {
-			fileout << ((DocumentShippingForm*) List.FormList[i])->distance;
-		}
-		else if(List.FormList[i]->getType() ==PACKAGE){
-			fileout<<((PackageShippingForm*)List.FormList[i])->distance<<"\n";
-			fileout<<((PackageShippingForm*)List.FormList[i])->weight;
-		}
-		fileout.close();
+
+	if (List.FormList.size() > 0)
+		saveInputInfor(List.FormList[0], fileout);
+
+	for (int i = 1;i < List.FormList.size();i++) {
+		fileout << "\n";
+		saveInputInfor(List.FormList[i], fileout);
 	}
+
+	fileout.close();
 }
 
 void printMoneyToFile(Price money){
