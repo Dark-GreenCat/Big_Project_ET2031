@@ -23,13 +23,14 @@ enum ParcelType {
 };
 
 struct Price {
-	double DOC_service = 12000;
-	double DOC_distance = 2000;
-	double PAC_weight = 10000;
-	double PAC_distance = 2000;
+	unsigned int DOC_service = 12000;
+	unsigned int DOC_distance = 2000;
+	unsigned int PAC_weight = 10000;
+	unsigned int PAC_distance = 2000;
 };
 
-extern Price default_money;
+extern Price default_price;
+extern Price current_price;
 
 class ShippingForm {
 	public:
@@ -52,7 +53,7 @@ class ShippingForm {
 		void inputGeneralInfo(std::ifstream& filein);
 		virtual void inputDetailInfo(std::ifstream& filein) = 0;
 
-		virtual double getShippingPrice(Price money = default_money) = 0;
+		virtual double getShippingPrice(Price money = current_price) = 0;
 };
 
 class DocumentShippingForm : public ShippingForm {
@@ -61,7 +62,7 @@ class DocumentShippingForm : public ShippingForm {
 
 	public:
 		virtual int getType();
-		virtual double getShippingPrice(Price money = default_money);
+		virtual double getShippingPrice(Price money = current_price);
 		virtual void inputDetailInfo(std::ifstream& filein);
 };
 
@@ -72,7 +73,7 @@ class PackageShippingForm : public ShippingForm {
 
 	public:
 		virtual int getType();
-		virtual double getShippingPrice(Price money = default_money); 
+		virtual double getShippingPrice(Price money = current_price); 
 		virtual void inputDetailInfo(std::ifstream &filein);
 };
 

@@ -167,26 +167,42 @@ void listCompletedFileByTime(ShippingFormList &List) {
 }
 
 void updatePrice() {
-	Price custom_price;
-	std::cout << "Enter new price:\n";
+	std::cout << "Please choose an option below:\n";
+	std::cout << "1. Update price\n";
+	std::cout << "2. Return to default\n\n";
 
-	std::cout << "1. Document\n";
-	std::cout << "\tService's price: ";
-	std::cin >> custom_price.DOC_service;
-	std::cout << "\tDistance's price (per km): ";
-	std::cin >> custom_price.DOC_distance;
+	int option = 0;
+	do {
+			std::cout << "->Your option [1-2]: ";
+			std::cin >> option;
+	} while(!(option == 1 || option == 2));
 
-	std::cout << "2. Package\n";
-	std::cout << "\tWeight's price (per kg): ";
-	std::cin >> custom_price.PAC_weight;
-	std::cout << "\tDistance's price (per km): ";
-	std::cin >> custom_price.PAC_distance;
+	if(option == 1) {
+		Price custom_price;
+		std::cout << "Enter new price:\n";
 
-	default_money = custom_price;
+		std::cout << "1. Document\n";
+		std::cout << "\tService's price: ";
+		std::cin >> custom_price.DOC_service;
+		std::cout << "\tDistance's price (per km): ";
+		std::cin >> custom_price.DOC_distance;
+
+		std::cout << "2. Package\n";
+		std::cout << "\tWeight's price (per kg): ";
+		std::cin >> custom_price.PAC_weight;
+		std::cout << "\tDistance's price (per km): ";
+		std::cin >> custom_price.PAC_distance;
+
+		current_price = custom_price;
+	}
+	else if(option == 2) {
+		current_price = default_price;
+	}
+
 	std::cout << "New price:\n";
-	std::cout <<"1. Document:\nService: " << default_money.DOC_service << "\nDistance: " << default_money.DOC_distance << std::endl;
-	std::cout <<"2. Package:\nWeight: " << default_money.PAC_weight << "\nDistance: " << default_money.PAC_distance << std::endl;
-	printMoneyToFile(default_money);
+	std::cout <<"1. Document:\nService: " << current_price.DOC_service << "\nDistance: " << current_price.DOC_distance << std::endl;
+	std::cout <<"2. Package:\nWeight: " << current_price.PAC_weight << "\nDistance: " << current_price.PAC_distance << std::endl;
+	printMoneyToFile(current_price);
 }
 
 void printRevenue(ShippingFormList &List) {

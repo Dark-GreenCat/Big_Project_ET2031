@@ -16,7 +16,7 @@ int main() {
     printFormList(List);
     filein.close();
 
-    loadInputMoney(default_money);
+    loadInputMoney(current_price);
     //printAllFormToFile(List);
     int option;
     /* DELIVERY FORMS MANAGERMENT PROGRAM */

@@ -1,5 +1,7 @@
 #include "data_structure.h"
-Price default_money;
+
+Price default_price;
+Price current_price;
 
 ShippingForm::ShippingForm() {
 	this->ID = DEFAULT_ID;
@@ -24,8 +26,6 @@ void ShippingForm::inputGeneralInfo(std::ifstream &filein)
 	getline(filein, from_address); // std::cin.ignore(MAX_STREAMSIZE, '\n');
 	filein >> sent_date;
 
-	std::cout << std::endl;
-
 	filein.ignore();
 	getline(filein, receiver_name);
 	getline(filein, to_address);
@@ -42,7 +42,6 @@ double DocumentShippingForm::getShippingPrice(Price custom_price) {
 
 void DocumentShippingForm::inputDetailInfo(std::ifstream &filein)
 {
-	std::cout << "Enter distance (km): ";
 	filein >> distance;
 }
 
