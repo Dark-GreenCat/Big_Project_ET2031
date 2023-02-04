@@ -36,6 +36,7 @@ void inputFormList(ShippingFormList& List) {
 			inputForm(Form);
 
 			std::ofstream fileout;
+			fileout.open(INFOR_FILE, std::ios::app);
 			saveInputInfor(Form, fileout);
 			fileout.close();
 

@@ -44,7 +44,6 @@ int main() {
             
             case 6: // Update price
                 updatePrice();
-                
                 break;
 
             case 7:
