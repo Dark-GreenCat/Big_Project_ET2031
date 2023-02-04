@@ -14,6 +14,11 @@ FormManagementSystemInit::FormManagementSystemInit(ShippingFormList& pList, std:
 }
 
 void FormManagementSystemInit::init() {
+    if(!isFileExist(form_info_file))
+        creatNewFile(form_info_file);
+    if(!isFileExist(price_info_file));
+        creatNewFile(price_info_file);
+
     std::ifstream filein;
     filein.open(form_info_file, std::ios_base::in);
     filein.peek();

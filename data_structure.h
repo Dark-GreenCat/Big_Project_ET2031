@@ -45,6 +45,7 @@ class ShippingForm {
 		int sent_date;
 		int received_date;
 
+		int revenue;
 		bool isSucceeded;
 
 		ShippingForm();

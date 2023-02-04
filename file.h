@@ -3,8 +3,8 @@
 
 #include "data_structure.h"
 
-#define INFOR_FILE "infor.txt"
-#define MONEY_FILE "money.txt"
+#define INFOR_FILE "D:\\infor.txt"
+#define MONEY_FILE "D:\\money.txt"
 
 void loadForm(ShippingForm*& Form, std::ifstream& filein);
 
